@@ -9,30 +9,38 @@ class AuthController extends BaseController
 {
     public function showLoginForm()
     {
-        helper(['form', 'url']);
-
         if (session()->get('user_id')) {
             return redirect()->to(site_url('admin'));
         }
 
         return view('backend/auth/login', [
-            'title' => 'Login - HIMA SI',
+            'title'      => 'Masuk - ' . config('Organization')->name,
             'identifier' => session()->getFlashdata('identifier') ?? '',
         ]);
     }
 
     public function attemptLogin()
     {
-        helper(['form', 'url']);
-
         $identifierInput = $this->request->getPost('identifier');
-        $identifier = is_string($identifierInput) ? trim($identifierInput) : '';
+        $identifier      = is_string($identifierInput) ? trim($identifierInput) : '';
+        $passwordInput   = $this->request->getPost('password');
+        $password        = is_string($passwordInput) ? $passwordInput : '';
+
         $rules = [
             'identifier' => 'required|max_length[150]',
             'password'   => 'required|max_length[255]',
         ];
+        $messages = [
+            'identifier' => [
+                'required' => 'Username atau email wajib diisi.',
+                'max_length' => 'Username atau email terlalu panjang.',
+            ],
+            'password' => [
+                'required' => 'Kata sandi wajib diisi.',
+            ],
+        ];
 
-        if (! $this->validate($rules)) {
+        if (! $this->validate($rules, $messages)) {
             return redirect()->back()
                 ->with('identifier', $identifier)
                 ->with('errors', $this->validator->getErrors());
@@ -45,16 +53,8 @@ class AuthController extends BaseController
                 ->with('error', 'Terlalu banyak percobaan masuk. Coba lagi beberapa menit lagi.');
         }
 
-        $passwordInput = $this->request->getPost('password');
-        $password = is_string($passwordInput) ? $passwordInput : '';
         $userModel = model(PenggunaModel::class);
-        $user = $userModel
-            ->groupStart()
-            ->where('username', $identifier)
-            ->orWhere('email', $identifier)
-            ->groupEnd()
-            ->where('is_active', 1)
-            ->first();
+        $user      = $userModel->findByIdentifier($identifier);
 
         if ($user === null || ! password_verify($password, $user['password'])) {
             return redirect()->back()
@@ -62,22 +62,29 @@ class AuthController extends BaseController
                 ->with('error', 'Username/email atau kata sandi tidak valid.');
         }
 
+        if ((int) $user['is_active'] !== 1) {
+            return redirect()->back()
+                ->with('identifier', $identifier)
+                ->with('error', 'Akun Anda sedang dinonaktifkan. Hubungi Super Admin.');
+        }
+
+        service('throttler')->remove($throttlerKey);
         session()->regenerate(true);
         session()->set([
             'user_id'   => $user['id'],
             'user_name' => $user['full_name'],
+            'username'  => $user['username'],
+            'role_slug' => $user['role_slug'],
+            'role_name' => $user['role_name'] ?: role_label($user['role_slug']),
         ]);
 
-        if (! $userModel->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')])) {
-            log_message('error', 'Gagal memperbarui last_login_at untuk pengguna ID ' . $user['id']);
-        }
+        $userModel->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')]);
 
-        return redirect()->to(site_url('admin'));
+        return redirect()->to(site_url('admin'))->with('message', 'Selamat datang, ' . $user['full_name'] . '.');
     }
 
     public function logout()
     {
-        helper('url');
         session()->destroy();
 
         return redirect()->to(site_url('login'))->with('message', 'Anda telah keluar.');

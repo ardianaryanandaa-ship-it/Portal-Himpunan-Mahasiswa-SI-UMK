@@ -2,8 +2,8 @@
 
 <?= $this->section('content') ?>
     <div class="text-start mb-10">
-        <h1 class="text-gray-900 mb-3">Masuk ke Backend</h1>
-        <div class="text-gray-500 fw-semibold fs-6">Gunakan username atau email dan kata sandi akun Anda.</div>
+        <h1 class="text-gray-900 mb-3">Masuk ke Panel</h1>
+        <div class="text-gray-500 fw-semibold fs-6">Gunakan username atau email dan kata sandi akun pengurus.</div>
     </div>
 
     <?php if ($message = session()->getFlashdata('error')): ?>
@@ -27,35 +27,20 @@
 
         <div class="fv-row mb-8">
             <label for="identifier" class="form-label fs-6 fw-bold text-gray-900">Username atau email</label>
-            <input
-                id="identifier"
-                name="identifier"
-                type="text"
-                class="form-control form-control-lg form-control-solid"
-                value="<?= esc($identifier ?? '') ?>"
-                required
-                maxlength="150"
-                autocomplete="username"
-                autocapitalize="none"
-                autofocus
-            >
+            <input id="identifier" name="identifier" type="text" class="form-control form-control-lg form-control-solid"
+                   value="<?= esc($identifier ?? '') ?>" required maxlength="150" autocomplete="username" autocapitalize="none" autofocus>
         </div>
 
         <div class="fv-row mb-8">
             <label for="password" class="form-label fs-6 fw-bold text-gray-900">Kata sandi</label>
-            <input
-                id="password"
-                name="password"
-                type="password"
-                class="form-control form-control-lg form-control-solid"
-                required
-                maxlength="255"
-                autocomplete="current-password"
-            >
+            <input id="password" name="password" type="password" class="form-control form-control-lg form-control-solid"
+                   required maxlength="255" autocomplete="current-password">
         </div>
 
-        <button type="submit" class="btn btn-lg btn-primary w-100">
-            <span class="indicator-label">Masuk</span>
-        </button>
+        <button type="submit" class="btn btn-lg btn-primary w-100">Masuk</button>
     </form>
+
+    <div class="text-center mt-8">
+        <a href="<?= site_url('/') ?>" class="text-muted text-hover-primary fs-7">&larr; Kembali ke halaman utama</a>
+    </div>
 <?= $this->endSection() ?>

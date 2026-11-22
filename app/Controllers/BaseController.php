@@ -30,6 +30,13 @@ abstract class BaseController extends Controller
     // protected $session;
 
     /**
+     * Helper yang selalu tersedia di controller dan view.
+     *
+     * @var list<string>
+     */
+    protected $helpers = ['form', 'url', 'text', 'auth'];
+
+    /**
      * @param CLIRequest|IncomingRequest $request
      *
      * @return void
