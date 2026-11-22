@@ -25,6 +25,33 @@ body {
         linear-gradient(135deg, var(--hima-blue-950) 0%, var(--hima-blue-900) 68%, #173e70 100%);
 }
 
+.hero-photo-bg {
+    /* Background hero memakai foto HIMA SI beserta lapisan warna agar teks tetap terbaca. */
+    min-height: 680px;
+    border-bottom: 0;
+    background:
+        linear-gradient(135deg, rgba(9, 28, 58, 0.82) 0%, rgba(16, 42, 76, 0.70) 58%, rgba(23, 62, 112, 0.78) 100%),
+        url('../../gambar/foto-bersama-hima-si.jpeg') center 40% / cover no-repeat;
+    background-attachment: scroll;
+}
+
+@media (max-width: 991.98px) {
+    .hero-photo-bg {
+        min-height: 700px;
+        background:
+            linear-gradient(135deg, rgba(9, 28, 58, 0.84) 0%, rgba(16, 42, 76, 0.72) 58%, rgba(23, 62, 112, 0.82) 100%),
+            url('../../gambar/foto-bersama-hima-si.jpeg') center 35% / cover no-repeat;
+    }
+
+    .hero-section-height {
+        min-height: 680px;
+    }
+
+    .hero-section-height {
+        min-height: 700px;
+    }
+}
+
 .landing-header {
     height: 82px;
     background: #ffffff;
@@ -219,15 +246,44 @@ body {
 #home h1 {
     max-width: 900px;
     margin-inline: auto;
-    font-size: clamp(38px, 5vw, 64px) !important;
+    font-size: 44px !important;
     line-height: 1.12 !important;
     letter-spacing: -1.5px;
     position: relative;
     z-index: 3;
 }
 
+#home h1 {
+    min-height: 2.24em;
+}
+
+#home h1 .hero-title-line {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+#home h1 .hero-title-line-secondary {
+    min-height: 1.12em;
+}
+
 #home h1 #kt_landing_hero_text {
     color: var(--hima-gold) !important;
+    vertical-align: baseline;
+    white-space: nowrap;
+    will-change: contents;
+    transition: opacity 280ms ease, transform 280ms ease;
+}
+
+#home h1 #kt_landing_hero_text.hero-text-leaving {
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+#home h1 #kt_landing_hero_text.hero-text-entering {
+    opacity: 0;
+    transform: translateY(5px);
 }
 
 #home .badge.badge-light-primary {
@@ -250,6 +306,11 @@ body {
 
 #home [class*="position-relative"].gap-4 {
     margin-top: 10px;
+}
+
+#home [class*="position-relative"].gap-4 {
+    max-height: none;
+    overflow: visible;
 }
 
 #home [class*="position-relative"].gap-4 > div {
@@ -290,6 +351,199 @@ body {
 #achievements,
 #news {
     background: var(--hima-blue-50) !important;
+}
+
+/* Ornamen tipis pada section putih dan biru muda agar tidak terasa datar. */
+#about,
+#team,
+#programs,
+#events,
+#portfolio,
+#gallery,
+#aspirations,
+#faq,
+#vision-mission,
+#achievements,
+#news {
+    position: relative;
+    overflow: hidden;
+}
+
+#about::before,
+#team::before,
+#programs::before,
+#events::before,
+#portfolio::before,
+#gallery::before,
+#aspirations::before,
+#faq::before,
+#vision-mission::before,
+#achievements::before,
+#news::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -150px;
+    top: 36px;
+    border: 1px solid rgba(37, 99, 235, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#about::after,
+#team::after,
+#programs::after,
+#events::after,
+#portfolio::after,
+#gallery::after,
+#aspirations::after,
+#faq::after,
+#vision-mission::after,
+#achievements::after,
+#news::after {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    left: -105px;
+    bottom: 48px;
+    border: 1px solid rgba(37, 99, 235, 0.07);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.organization-section {
+    background:
+        linear-gradient(180deg, rgba(248, 250, 252, 0.96), #ffffff);
+}
+
+.organization-subheading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e7edf5;
+}
+
+.organization-subheading-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--hima-blue-600);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.organization-bph-card,
+.organization-department-card {
+    position: relative;
+    height: 100%;
+    border: 1px solid #e3eaf3;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(15, 42, 76, 0.055);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.organization-bph-card {
+    min-height: 150px;
+    padding: 22px 24px 20px 76px;
+}
+
+.organization-card-number {
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: #eff6ff;
+    color: var(--hima-blue-700);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.organization-department-card {
+    padding: 20px;
+}
+
+.organization-department-code {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    margin-bottom: 14px;
+    padding: 4px 9px;
+    border-left: 3px solid var(--hima-blue-600);
+    background: #f1f5f9;
+    color: var(--hima-blue-950);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.organization-bph-card:hover,
+.organization-department-card:hover {
+    transform: translateY(-3px);
+    border-color: #b9cff1;
+    box-shadow: 0 12px 28px rgba(15, 42, 76, 0.09);
+}
+
+@media (max-width: 575.98px) {
+    .organization-subheading {
+        display: block;
+    }
+
+    .organization-subheading > span {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .organization-bph-card {
+        min-height: 0;
+    }
+}
+
+.achievements-wrapper {
+    background:
+        radial-gradient(circle at 14% 20%, rgba(96, 165, 250, 0.18), transparent 250px),
+        radial-gradient(circle at 86% 78%, rgba(59, 130, 246, 0.14), transparent 280px),
+        linear-gradient(135deg, #0b1f3a 0%, #102a4c 58%, #173e70 100%);
+}
+
+.achievements-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.achievements-section .achievement-stat {
+    position: relative;
+    border: 1px solid rgba(191, 219, 254, 0.22);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 40px rgba(2, 12, 27, 0.16);
+    backdrop-filter: blur(10px);
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.achievements-section .achievement-stat::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    pointer-events: none;
+}
+
+.achievements-section .achievement-stat:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(191, 219, 254, 0.38);
 }
 
 #vision-mission .card.bg-primary {
@@ -379,7 +633,7 @@ body {
     }
 
     #home h1 {
-        font-size: clamp(32px, 8vw, 48px) !important;
+        font-size: 36px !important;
     }
 
     #home .text-center.mb-5.mb-lg-10 {
@@ -433,7 +687,8 @@ body {
     }
 
     #home h1 {
-        font-size: 34px !important;
+        min-height: 2.32em;
+        font-size: 18px !important;
     }
 
     #home h1 br {
@@ -441,11 +696,25 @@ body {
     }
 
     #home [class*="position-relative"].gap-4 {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-height: none;
+        overflow: visible;
     }
 
     #home [class*="position-relative"].gap-4 > div {
-        max-width: 280px;
-        margin-inline: auto !important;
+        max-width: none;
+        min-width: 0;
+        margin-inline: 0 !important;
+        border-radius: 12px !important;
+        padding: 10px 12px !important;
+    }
+
+    #home [class*="position-relative"].gap-4 > div .symbol {
+        display: none;
+    }
+
+    #home [class*="position-relative"].gap-4 > div .text-start span {
+        white-space: normal;
+        overflow: visible;
     }
 }

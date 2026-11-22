@@ -1,4 +1,5 @@
 <!--begin::Aspirations Section-->
+<!-- Menampilkan aspirasi publik, testimoni yang dipublikasikan, dan formulir pengiriman aspirasi. -->
 <div class="py-10 py-lg-20" id="aspirations">
     <!--begin::Container-->
     <div class="container">
@@ -25,6 +26,7 @@
         <!--end::Heading-->
 
         <!--begin::Row Testimonials-->
+        <!-- Testimoni dipakai dari aspirasi yang dipublikasikan, jika kosong memakai data statis sebagai fallback. -->
         <?php $testimonialColors = ['primary', 'success', 'warning']; ?>
         <div class="row g-lg-10 mb-10 mb-lg-18">
             <?php
@@ -99,7 +101,7 @@
                     <?php if ($message = session()->getFlashdata('aspiration_error')): ?>
                         <div class="alert alert-danger"><?= esc($message) ?></div>
                     <?php endif; ?>
-                    <form method="post" action="<?= site_url('aspirasi') ?>">
+                    <form id="form-aspirasi" method="post" action="<?= site_url('aspirasi') ?>">
                         <?= csrf_field() ?>
                         <div class="row g-4">
                             <div class="col-md-6">

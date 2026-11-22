@@ -159,14 +159,65 @@
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 <script src="<?= base_url('assets/plugins/global/plugins.bundle.js') ?>"></script>
 <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Popup frontend menampilkan hasil sukses atau error pengiriman aspirasi. -->
+<?php if ($message = session()->getFlashdata('aspiration_success')): ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+        icon: 'success',
+        title: 'Aspirasi Terkirim',
+        text: <?= json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>,
+        confirmButtonText: 'OK'
+    });
+});
+</script>
+<?php endif; ?>
+<?php if ($errors = session()->getFlashdata('aspiration_errors')): ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+        icon: 'error',
+        title: 'Data Belum Lengkap',
+        html: <?= json_encode('<ul class="text-start mb-0"><li>' . implode('</li><li>', array_map('esc', $errors)) . '</li></ul>', JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>,
+        confirmButtonText: 'Periksa Kembali'
+    });
+});
+</script>
+<?php endif; ?>
+<?php if ($message = session()->getFlashdata('aspiration_error')): ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+        icon: 'error',
+        title: 'Pengiriman Gagal',
+        text: <?= json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>,
+        confirmButtonText: 'Coba Lagi'
+    });
+});
+</script>
+<?php endif; ?>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src="<?= base_url('assets/plugins/custom/fslightbox/fslightbox.bundle.js') ?>"></script>
 <script src="<?= base_url('assets/plugins/custom/typedjs/typedjs.bundle.js') ?>"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="<?= base_url('assets/js/custom/landing.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom/landing.js') ?>?v=20261122"></script>
 <script src="<?= base_url('assets/js/custom/pages/pricing/general.js') ?>"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const aspirationForm = document.querySelector('#form-aspirasi');
+    if (!aspirationForm) return;
+
+    aspirationForm.addEventListener('submit', function () {
+        const button = aspirationForm.querySelector('[type="submit"]');
+        if (!button) return;
+        button.disabled = true;
+        button.innerHTML = 'Mengirim...';
+    });
+});
+</script>
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
 </body>

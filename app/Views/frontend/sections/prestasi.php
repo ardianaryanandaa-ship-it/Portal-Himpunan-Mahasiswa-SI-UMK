@@ -1,15 +1,7 @@
 <!--begin::Achievements & Statistics Section-->
-<div class="mt-sm-n10">
-    <!--begin::Curve top-->
-    <div class="landing-curve landing-dark-color">
-        <svg viewBox="15 -1 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 48C4.93573 47.6644 8.85984 47.3311 12.7725 47H1489.16C1493.1 47.3311 1497.04 47.6644 1501 48V47H1489.16C914.668 -1.34764 587.282 -1.61174 12.7725 47H1V48Z" fill="currentColor"></path>
-        </svg>
-    </div>
-    <!--end::Curve top-->
-
+<div class="achievements-section position-relative overflow-hidden">
     <!--begin::Wrapper-->
-    <div class="pb-15 pt-18 landing-dark-bg">
+    <div class="py-16 py-lg-20 landing-dark-bg achievements-wrapper">
         <!--begin::Container-->
         <div class="container">
             <!--begin::Heading-->
@@ -37,7 +29,7 @@
                 <!--begin::Items-->
                 <div class="d-flex flex-wrap flex-center justify-content-lg-between mb-15 mx-auto w-xl-900px">
                     <!--begin::Item 1-->
-                    <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('<?= base_url('assets/media/svg/misc/octagon.svg') ?>')">
+                    <div class="achievement-stat d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3">
                         <i class="ki-duotone ki-award fs-2tx text-white mb-3">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -53,7 +45,7 @@
                     <!--end::Item 1-->
 
                     <!--begin::Item 2-->
-                    <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('<?= base_url('assets/media/svg/misc/octagon.svg') ?>')">
+                    <div class="achievement-stat d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3">
                         <i class="ki-duotone ki-people fs-2tx text-white mb-3">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -71,7 +63,7 @@
                     <!--end::Item 2-->
 
                     <!--begin::Item 3-->
-                    <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('<?= base_url('assets/media/svg/misc/octagon.svg') ?>')">
+                    <div class="achievement-stat d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3">
                         <i class="ki-duotone ki-calendar-tick fs-2tx text-white mb-3">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -90,7 +82,7 @@
                     <!--end::Item 3-->
 
                     <!--begin::Item 4-->
-                    <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('<?= base_url('assets/media/svg/misc/octagon.svg') ?>')">
+                    <div class="achievement-stat d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3">
                         <i class="ki-duotone ki-handshake fs-2tx text-white mb-3">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -149,13 +141,6 @@
     </div>
     <!--end::Wrapper-->
 
-    <!--begin::Curve bottom-->
-    <div class="landing-curve landing-dark-color">
-        <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
-        </svg>
-    </div>
-    <!--end::Curve bottom-->
 </div>
 <!--end::Achievements & Statistics Section-->
 

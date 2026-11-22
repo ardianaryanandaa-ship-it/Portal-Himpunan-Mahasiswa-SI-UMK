@@ -12,6 +12,7 @@
     <?= $this->renderSection('styles') ?>
 </head>
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed bg-light">
+    <!-- Tema terang disimpan di browser agar tampilan backend konsisten. -->
     <script>
         var defaultThemeMode = "light";
         var themeMode = localStorage.getItem("data-bs-theme") || defaultThemeMode;
@@ -22,6 +23,7 @@
     </script>
 
     <?= $this->include('backend/layouts/partials/header') ?>
+    <!-- Header berisi identitas admin, sedangkan navbar berisi menu backend. -->
     <?= $this->include('backend/layouts/partials/navbar') ?>
 
     <main class="container-xxl flex-grow-1 py-5 py-lg-6">
@@ -33,6 +35,31 @@
 
     <script src="<?= base_url('assets/plugins/global/plugins.bundle.js') ?>"></script>
     <script src="<?= base_url('assets/js/scripts.bundle.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if ($message = session()->getFlashdata('message')): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: <?= json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>,
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+    <?php endif; ?>
+    <?php if ($message = session()->getFlashdata('error')): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: <?= json_encode($message, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>,
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+    <?php endif; ?>
     <?= $this->renderSection('scripts') ?>
 </body>
 </html>

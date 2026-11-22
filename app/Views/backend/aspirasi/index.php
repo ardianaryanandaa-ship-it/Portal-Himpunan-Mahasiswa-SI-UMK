@@ -6,6 +6,7 @@
 
 <?= $this->section('content') ?>
 
+<!-- Notifikasi flash menampilkan hasil aksi tanpa menutup halaman daftar. -->
 <?php if ($message = session()->getFlashdata('message')): ?>
     <div class="alert alert-success" role="status"><?= esc($message) ?></div>
 <?php endif; ?>
@@ -14,6 +15,7 @@
 <?php endif; ?>
 
 <div class="row g-4 mb-6">
+    <!-- Ringkasan jumlah aspirasi memudahkan pemantauan status dan publikasi. -->
     <?php
     $cards = [
         'all' => ['Semua', 'primary'],

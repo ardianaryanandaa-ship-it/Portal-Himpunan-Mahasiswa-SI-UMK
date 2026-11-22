@@ -1,6 +1,7 @@
 <?= $this->extend('backend/layouts/main') ?>
 <?= $this->section('content') ?>
 
+<!-- Flash notification menampilkan hasil berhasil atau gagal setelah aksi dilakukan. -->
 <?php if ($message = session()->getFlashdata('message')): ?>
     <div class="alert alert-success" role="status"><?= esc($message) ?></div>
 <?php endif; ?>
@@ -39,7 +40,8 @@
         <div class="card card-flush mb-6">
             <div class="card-body">
                 <h3 class="fs-5 fw-bold mb-5">Kelola Status</h3>
-                <form method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/status') ?>">
+                <!-- Form status diperbarui setelah pengguna mengonfirmasi perubahan. -->
+                <form class="js-confirm-submit" data-confirm-title="Simpan status?" data-confirm-text="Status aspirasi akan diperbarui." method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/status') ?>">
                     <?= csrf_field() ?>
                     <label for="status" class="form-label">Status penanganan</label>
                     <select id="status" name="status" class="form-select form-select-solid mb-4">
@@ -55,14 +57,15 @@
         <div class="card card-flush mb-6">
             <div class="card-body">
                 <h3 class="fs-5 fw-bold mb-3">Tampilan Landing Page</h3>
+                <!-- Nama dan peran dapat diatur sebelum aspirasi dipublikasikan. -->
                 <?php if ($aspiration['is_published']): ?>
                     <div class="alert alert-primary mb-4">Aspirasi ini sedang ditampilkan.</div>
-                    <form method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/publish') ?>">
+                    <form class="js-confirm-submit" data-confirm-title="Hentikan tampilan?" data-confirm-text="Aspirasi tidak lagi ditampilkan di landing page." method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/publish') ?>">
                         <?= csrf_field() ?>
                         <button type="submit" class="btn btn-light-danger w-100">Hentikan Tampilan</button>
                     </form>
                 <?php else: ?>
-                    <form method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/publish') ?>">
+                    <form class="js-confirm-submit" data-confirm-title="Tampilkan aspirasi?" data-confirm-text="Aspirasi akan ditampilkan di landing page." method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/publish') ?>">
                         <?= csrf_field() ?>
                         <div class="mb-3">
                             <label for="published_name" class="form-label">Nama yang Ditampilkan</label>
@@ -78,7 +81,7 @@
             </div>
         </div>
 
-        <form method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/delete') ?>" onsubmit="return confirm('Hapus aspirasi ini secara permanen?')">
+        <form class="js-confirm-submit" data-confirm-title="Hapus aspirasi?" data-confirm-text="Data aspirasi akan dihapus dan tidak dapat dikembalikan." data-confirm-button="Ya, hapus" method="post" action="<?= site_url('admin/aspirasi/' . $aspiration['id'] . '/delete') ?>">
             <?= csrf_field() ?>
             <button type="submit" class="btn btn-light-danger w-100">Hapus Aspirasi</button>
         </form>
@@ -87,4 +90,34 @@
 
 <a href="<?= site_url('admin/aspirasi') ?>" class="btn btn-light mt-6">Kembali ke daftar</a>
 
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.js-confirm-submit').forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const submitButton = form.querySelector('[type="submit"]');
+
+            Swal.fire({
+                icon: 'question',
+                title: form.dataset.confirmTitle || 'Konfirmasi',
+                text: form.dataset.confirmText || 'Lanjutkan perubahan data?',
+                showCancelButton: true,
+                confirmButtonText: form.dataset.confirmButton || 'Ya, lanjutkan',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then(function (result) {
+                if (!result.isConfirmed) return;
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = 'Memproses...';
+                }
+                form.submit();
+            });
+        });
+    });
+});
+</script>
 <?= $this->endSection() ?>

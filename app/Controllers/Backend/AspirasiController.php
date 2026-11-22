@@ -8,6 +8,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class AspirasiController extends BaseController
 {
+    // Memuat model aspirasi agar seluruh aksi menggunakan satu akses database.
     private function model(): AspirasiModel
     {
         return model(AspirasiModel::class);
@@ -15,6 +16,7 @@ class AspirasiController extends BaseController
 
     public function store()
     {
+        // Menerima dan memvalidasi aspirasi yang dikirim dari landing page.
         helper(['form', 'url']);
 
         $rules = [
@@ -35,7 +37,7 @@ class AspirasiController extends BaseController
 
         $isAnonymous = (string) $this->request->getPost('is_anonymous') === '1';
         $model = model(AspirasiModel::class);
-        $model->insert([
+        $inserted = $model->insert([
             'name'         => $isAnonymous ? null : trim((string) $this->request->getPost('name')),
             'nim'          => trim((string) $this->request->getPost('nim')),
             'email'        => trim((string) $this->request->getPost('email')),
@@ -48,7 +50,7 @@ class AspirasiController extends BaseController
             'is_published' => 0,
         ]);
 
-        if ($model->errors()) {
+        if (! $inserted) {
             return redirect()->back()
                 ->withInput()
                 ->with('aspiration_error', 'Aspirasi belum dapat disimpan. Silakan coba lagi.');
@@ -60,6 +62,7 @@ class AspirasiController extends BaseController
 
     public function index()
     {
+        // Menampilkan daftar aspirasi beserta jumlah status untuk dashboard admin.
         $model = $this->model();
         $status = (string) $this->request->getGet('status');
 
@@ -83,6 +86,7 @@ class AspirasiController extends BaseController
 
     public function show(int $id)
     {
+        // Menampilkan detail satu aspirasi untuk ditinjau atau diperbarui.
         $aspiration = $this->model()->find($id);
         if ($aspiration === null) {
             throw new PageNotFoundException('Aspirasi tidak ditemukan.');
@@ -96,12 +100,18 @@ class AspirasiController extends BaseController
 
     public function updateStatus(int $id)
     {
+        // Mengubah status penanganan aspirasi dan memeriksa nilai yang diterima.
         $status = (string) $this->request->getPost('status');
         if (! in_array($status, ['pending', 'read', 'resolved', 'rejected'], true)) {
             return redirect()->back()->with('error', 'Status aspirasi tidak valid.');
         }
 
-        if (! $this->model()->update($id, ['status' => $status])) {
+        $model = $this->model();
+        if ($model->find($id) === null) {
+            return redirect()->to(site_url('admin/aspirasi'))->with('error', 'Aspirasi tidak ditemukan.');
+        }
+
+        if (! $model->update($id, ['status' => $status])) {
             return redirect()->back()->with('error', 'Status aspirasi gagal diperbarui.');
         }
 
@@ -110,6 +120,7 @@ class AspirasiController extends BaseController
 
     public function togglePublish(int $id)
     {
+        // Memilih apakah aspirasi ditampilkan atau dihentikan pada landing page.
         $model = $this->model();
         $aspiration = $model->find($id);
         if ($aspiration === null) {
@@ -117,11 +128,18 @@ class AspirasiController extends BaseController
         }
 
         $published = (int) $aspiration['is_published'] === 1;
+        $publishedName = trim((string) $this->request->getPost('published_name'));
+        $publishedRole = trim((string) $this->request->getPost('published_role'));
+
+        if (! $published && ($publishedName === '' || mb_strlen($publishedName) > 150 || mb_strlen($publishedRole) > 150)) {
+            return redirect()->back()->with('error', 'Nama dan peran yang ditampilkan wajib diisi dengan benar.');
+        }
+
         $data = [
             'is_published'   => $published ? 0 : 1,
             'published_at'   => $published ? null : date('Y-m-d H:i:s'),
-            'published_name' => $published ? null : trim((string) $this->request->getPost('published_name')),
-            'published_role' => $published ? null : trim((string) $this->request->getPost('published_role')),
+            'published_name' => $published ? null : $publishedName,
+            'published_role' => $published ? null : $publishedRole,
         ];
 
         if (! $model->update($id, $data)) {
@@ -136,7 +154,13 @@ class AspirasiController extends BaseController
 
     public function delete(int $id)
     {
-        if (! $this->model()->delete($id)) {
+        // Menghapus aspirasi secara permanen melalui tindakan admin.
+        $model = $this->model();
+        if ($model->find($id) === null) {
+            return redirect()->to(site_url('admin/aspirasi'))->with('error', 'Aspirasi tidak ditemukan.');
+        }
+
+        if (! $model->delete($id)) {
             return redirect()->back()->with('error', 'Aspirasi gagal dihapus.');
         }
 

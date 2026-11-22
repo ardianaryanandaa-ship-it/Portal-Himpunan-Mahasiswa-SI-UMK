@@ -1,5 +1,7 @@
 <!--begin::Landing hero-->
-<div class="d-flex flex-column flex-center w-100 min-h-350px min-h-lg-500px px-9">
+<!-- Bagian hero menampilkan judul utama, deskripsi, tombol navigasi, dan sorotan HIMA SI. -->
+<!-- Tinggi hero diperbesar agar foto bersama tetap dominan pada desktop dan seluler. -->
+<div class="d-flex flex-column flex-center w-100 hero-section-height px-9">
     <!--begin::Heading-->
     <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
         <!--begin::Badge-->
@@ -11,11 +13,14 @@
         <!--end::Badge-->
 
         <!--begin::Title-->
+        <!-- Judul dibagi menjadi dua baris agar posisi teks tetap stabil saat animasi berjalan. -->
         <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-6 text-center">
-            <?= esc($landingPage['hero_title_lead']) ?> <br class="d-none d-md-inline" />
-            <span class="text-white"><?= esc($landingPage['hero_title_secondary']) ?></span>
-            <?php $typedTexts = array_values(array_filter(array_map(static fn (array $item): string => trim($item[0]), $landingPage['hero_typed_texts_items']))); ?>
-            <span class="text-primary d-inline-block" id="kt_landing_hero_text"><?= esc($typedTexts[0] ?? '') ?></span>
+            <span class="hero-title-line"><?= esc($landingPage['hero_title_lead']) ?></span>
+            <span class="hero-title-line hero-title-line-secondary">
+                <span class="text-white"><?= esc($landingPage['hero_title_secondary']) ?></span>
+                <?php $typedTexts = array_values(array_filter(array_map(static fn (array $item): string => trim($item[0]), $landingPage['hero_typed_texts_items']))); ?>
+                <span class="text-primary d-inline-block" id="kt_landing_hero_text"><?= esc($typedTexts[0] ?? '') ?></span>
+            </span>
         </h1>
         <!--end::Title-->
 
@@ -88,22 +93,3 @@
 </div>
 <!--end::Landing hero-->
 
-<!--begin::Typed.js Initialization Script-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        if (typeof Typed !== 'undefined') {
-            var typedTarget = document.querySelector("#kt_landing_hero_text");
-            if (typedTarget && !typedTarget.hasAttribute("data-typed-init")) {
-                typedTarget.setAttribute("data-typed-init", "true");
-                new Typed("#kt_landing_hero_text", {
-                    strings: <?= json_encode($typedTexts, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) ?>,
-                    typeSpeed: 60,
-                    backSpeed: 30,
-                    backDelay: 2500,
-                    loop: true
-                });
-            }
-        }
-    });
-</script>
-<!--end::Typed.js Initialization Script-->
