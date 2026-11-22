@@ -3,11 +3,18 @@
 namespace App\Controllers;
 
 use App\Libraries\LandingPageContent;
+use App\Models\AspirasiModel;
 
 class Home extends BaseController
 {
     public function index()
     {
+        $publishedAspirations = model(AspirasiModel::class)
+            ->where('is_published', 1)
+            ->where('deleted_at', null)
+            ->orderBy('published_at', 'DESC')
+            ->findAll(3);
+
         return view('frontend/pages/home', [
             'title' => 'Beranda - HIMA SI',
             'landingPage' => LandingPageContent::values(),
@@ -22,6 +29,7 @@ class Home extends BaseController
             'galleryItems' => [],
             'faqs' => [],
             'hasFaqRecords' => false,
+            'publishedAspirations' => $publishedAspirations,
         ]);
     }
 }

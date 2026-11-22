@@ -27,7 +27,21 @@
         <!--begin::Row Testimonials-->
         <?php $testimonialColors = ['primary', 'success', 'warning']; ?>
         <div class="row g-lg-10 mb-10 mb-lg-18">
-            <?php foreach ($landingPage['testimonial_rows_items'] as $index => [$title, $description, $name, $role]): ?>
+            <?php
+            $testimonialItems = [];
+            foreach (($publishedAspirations ?? []) as $aspiration) {
+                $testimonialItems[] = [
+                    $aspiration['subject'],
+                    $aspiration['message'],
+                    $aspiration['published_name'] ?: ($aspiration['is_anonymous'] ? 'Penyumbang Anonim' : ($aspiration['name'] ?: 'Mahasiswa')),
+                    $aspiration['published_role'] ?: 'Aspirasi ' . ucfirst($aspiration['category']),
+                ];
+            }
+            if ($testimonialItems === []) {
+                $testimonialItems = $landingPage['testimonial_rows_items'];
+            }
+            ?>
+            <?php foreach ($testimonialItems as $index => [$title, $description, $name, $role]): ?>
                 <?php $color = $testimonialColors[$index % count($testimonialColors)]; ?>
                 <div class="col-lg-4">
                     <div class="card card-flush h-100 p-8 border border-gray-200 shadow-sm hover-elevate-up d-flex flex-column justify-content-between">
@@ -72,24 +86,61 @@
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <form onsubmit="event.preventDefault(); alert('Terima kasih! Aspirasi Anda telah berhasil dikirim ke pengurus HIMA SI.');">
+                    <?php if ($message = session()->getFlashdata('aspiration_success')): ?>
+                        <div class="alert alert-success"><?= esc($message) ?></div>
+                    <?php endif; ?>
+                    <?php if ($errors = session()->getFlashdata('aspiration_errors')): ?>
+                        <div class="alert alert-danger">
+                            <?php foreach ($errors as $error): ?>
+                                <div><?= esc($error) ?></div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($message = session()->getFlashdata('aspiration_error')): ?>
+                        <div class="alert alert-danger"><?= esc($message) ?></div>
+                    <?php endif; ?>
+                    <form method="post" action="<?= site_url('aspirasi') ?>">
+                        <?= csrf_field() ?>
                         <div class="row g-4">
                             <div class="col-md-6">
-                                <label class="form-label fs-7 fw-bold text-gray-700">Nama (Boleh Dikosongkan / Anonim)</label>
-                                <input type="text" class="form-control form-control-solid" placeholder="Nama Anda..." />
+                                <label for="aspiration-name" class="form-label fs-7 fw-bold text-gray-700">Nama (Opsional)</label>
+                                <input id="aspiration-name" name="name" type="text" maxlength="150" class="form-control form-control-solid" value="<?= esc(old('name')) ?>" placeholder="Nama Anda..." />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fs-7 fw-bold text-gray-700">Kategori Aspirasi</label>
-                                <select class="form-select form-select-solid">
-                                    <option value="kegiatan">Kegiatan &amp; Acara</option>
-                                    <option value="akademik">Akademik &amp; Fasilitas</option>
-                                    <option value="organisasi">Saran untuk Organisasi</option>
-                                    <option value="lainnya">Lainnya</option>
+                                <label for="aspiration-nim" class="form-label fs-7 fw-bold text-gray-700">NIM (Opsional)</label>
+                                <input id="aspiration-nim" name="nim" type="text" maxlength="30" class="form-control form-control-solid" value="<?= esc(old('nim')) ?>" placeholder="Nomor induk mahasiswa..." />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="aspiration-email" class="form-label fs-7 fw-bold text-gray-700">Email (Opsional)</label>
+                                <input id="aspiration-email" name="email" type="email" maxlength="150" class="form-control form-control-solid" value="<?= esc(old('email')) ?>" placeholder="nama@email.com" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="aspiration-phone" class="form-label fs-7 fw-bold text-gray-700">Nomor Telepon (Opsional)</label>
+                                <input id="aspiration-phone" name="phone" type="tel" maxlength="30" class="form-control form-control-solid" value="<?= esc(old('phone')) ?>" placeholder="08..." />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="aspiration-category" class="form-label fs-7 fw-bold text-gray-700">Kategori Aspirasi</label>
+                                <select id="aspiration-category" name="category" class="form-select form-select-solid" required>
+                                    <?php $category = old('category', 'kegiatan'); ?>
+                                    <option value="kegiatan" <?= $category === 'kegiatan' ? 'selected' : '' ?>>Kegiatan &amp; Acara</option>
+                                    <option value="akademik" <?= $category === 'akademik' ? 'selected' : '' ?>>Akademik &amp; Fasilitas</option>
+                                    <option value="organisasi" <?= $category === 'organisasi' ? 'selected' : '' ?>>Saran untuk Organisasi</option>
+                                    <option value="lainnya" <?= $category === 'lainnya' ? 'selected' : '' ?>>Lainnya</option>
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                <label for="aspiration-subject" class="form-label fs-7 fw-bold text-gray-700">Judul Aspirasi</label>
+                                <input id="aspiration-subject" name="subject" type="text" maxlength="150" class="form-control form-control-solid" value="<?= esc(old('subject')) ?>" required placeholder="Ringkasan aspirasi..." />
+                            </div>
                             <div class="col-12">
-                                <label class="form-label fs-7 fw-bold text-gray-700">Pesan Aspirasi &amp; Masukan</label>
-                                <textarea class="form-control form-control-solid" rows="4" placeholder="Tuliskan aspirasi atau ide Anda di sini..." required></textarea>
+                                <label for="aspiration-message" class="form-label fs-7 fw-bold text-gray-700">Pesan Aspirasi &amp; Masukan</label>
+                                <textarea id="aspiration-message" name="message" class="form-control form-control-solid" rows="4" maxlength="5000" placeholder="Tuliskan aspirasi atau ide Anda di sini..." required><?= esc(old('message')) ?></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is-anonymous" name="is_anonymous" value="1" <?= old('is_anonymous') ? 'checked' : '' ?>>
+                                    <label class="form-check-label text-gray-700" for="is-anonymous">Kirim sebagai aspirasi anonim</label>
+                                </div>
                             </div>
                             <div class="col-12 text-end">
                                 <button type="submit" class="btn btn-primary px-8 py-3 fw-semibold">

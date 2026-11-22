@@ -13,15 +13,13 @@ Akun tidak dapat didaftarkan melalui website. Buat akun melalui terminal proyek 
 php spark users:create
 ```
 
-Setiap pengguna aktif yang berhasil login memiliki akses untuk:
-- Menambah berita.
-- Mengedit dan menghapus berita.
-- Mengelola kegiatan.
-- Mengelola prestasi.
-- Mengelola album dan foto galeri.
-- Mengelola FAQ.
+Setiap pengguna aktif yang berhasil login memiliki akses ke dashboard backend dan dapat:
+- Melihat serta mengelola aspirasi yang dikirim pengunjung.
+- Mengubah status aspirasi menjadi menunggu, dibaca, selesai, atau ditolak.
+- Menampilkan atau menghentikan tampilan aspirasi pada landing page.
+- Menghapus aspirasi yang tidak diperlukan.
 
-Konten yang ditandai terbit atau aktif akan ditampilkan di frontend.
+Aspirasi dapat dikirim melalui formulir pada bagian Aspirasi di landing page. Data yang tersedia mencakup nama, NIM, email, nomor telepon, kategori, judul, pesan, serta pilihan anonim.
 
 Untuk gambar dan video, gunakan path file relatif dari folder `public`, misalnya:
 

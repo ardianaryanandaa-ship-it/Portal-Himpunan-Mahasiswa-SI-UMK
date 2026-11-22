@@ -24,7 +24,7 @@
     <?= $this->include('backend/layouts/partials/header') ?>
     <?= $this->include('backend/layouts/partials/navbar') ?>
 
-    <main class="container-xxl flex-grow-1 py-6">
+    <main class="container-xxl flex-grow-1 py-5 py-lg-6">
         <h1 class="fs-2hx fw-bold text-gray-900 mb-6"><?= esc($title ?? 'Dashboard') ?></h1>
         <?= $this->renderSection('content') ?>
     </main>
