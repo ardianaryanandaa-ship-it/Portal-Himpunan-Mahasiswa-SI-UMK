@@ -27,7 +27,9 @@ body {
 
 .hero-photo-bg {
     /* Background hero memakai foto HIMA SI beserta lapisan warna agar teks tetap terbaca. */
+    position: relative;
     min-height: 680px;
+    padding-top: 82px;
     border-bottom: 0;
     background:
         linear-gradient(135deg, rgba(9, 28, 58, 0.82) 0%, rgba(16, 42, 76, 0.70) 58%, rgba(23, 62, 112, 0.78) 100%),
@@ -52,16 +54,48 @@ body {
     }
 }
 
+@media (max-width: 1199.98px) {
+    .hero-photo-bg {
+        padding-top: 76px;
+    }
+}
+
 .landing-header {
     height: 82px;
     background: #ffffff;
     border-bottom: 1px solid #e5eef8;
     box-shadow: 0 6px 24px rgba(15, 42, 76, 0.07);
+    transition: height 180ms ease, box-shadow 180ms ease;
 }
 
 .landing-header-inner {
     min-height: 82px;
     gap: 20px;
+    transition: min-height 180ms ease;
+}
+
+body[data-kt-sticky-landing-header=on] {
+    padding-top: 0;
+}
+
+body[data-kt-sticky-landing-header=on] .landing-header {
+    animation: hima-sticky-header-enter 180ms ease-out both;
+}
+
+body[data-kt-sticky-landing-header=on] .landing-header-inner {
+    min-height: 70px;
+}
+
+@keyframes hima-sticky-header-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .landing-brand-group,
@@ -236,6 +270,14 @@ body {
 #home > .bgi-no-repeat > .d-flex.flex-column {
     position: relative;
     z-index: 2;
+}
+
+.landing-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
 }
 
 #home .text-center.mb-5.mb-lg-10 {
