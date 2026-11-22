@@ -1,4 +1,11 @@
 <!--begin::Events Section-->
+<?php
+$fallbackEvents = [
+    ['15 DES', '2024', 'Pendaftaran Buka', 'Seminar Nasional', 'AI & The Future of Enterprise Information Systems', 'Membahas tren implementasi kecerdasan buatan dalam otomatisasi bisnis dan rekayasa data perusahaan modern.', 'Auditorium Universitas Muria Kudus'],
+    ['22 DES', '2024', 'Segera Hadir', 'Workshop Desain', 'Hands-On UI/UX Design & Prototyping Figma', 'Pelatihan intensif praktik membuat wireframe, interactive prototype, dan design system profesional di Figma.', 'Lab Komputer Gedung F, FT UMK'],
+    ['10 JAN', '2025', 'Mendatang', 'Temu Akrab & Sharing', 'SI Annual Gathering & Alumni Career Talk', 'Temu kangen lintas angkatan serta sesi berbagi kiat sukses berkarir di industri IT langsung dari para alumni berprestasi.', 'Hall Gedung Rektorat Lt. 4 UMK'],
+];
+?>
 <div class="py-10 py-lg-20" id="events">
     <!--begin::Container-->
     <div class="container">
@@ -6,19 +13,19 @@
         <div class="text-center mb-12">
             <!--begin::Badge-->
             <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-4 py-2 text-uppercase">
-                <?= esc($landingPage['events_badge']) ?>
+                Agenda &amp; Kegiatan
             </span>
             <!--end::Badge-->
 
             <!--begin::Title-->
             <h2 class="fs-2hx text-gray-900 mb-5" data-kt-scroll-offset="{default: 100, lg: 150}">
-                <?= esc($landingPage['events_title']) ?>
+                Agenda Kegiatan Mendatang
             </h2>
             <!--end::Title-->
 
             <!--begin::Description-->
             <div class="fs-5 text-muted fw-semibold max-w-700px mx-auto">
-                <?= nl2br(esc($landingPage['events_description'])) ?>
+                Jangan lewatkan kesempatan menambah wawasan, pengalaman, dan jejaring melalui kegiatan resmi HIMA SI UMK.
             </div>
             <!--end::Description-->
         </div>
@@ -62,13 +69,13 @@
                 <?php endforeach; ?>
             </div>
         <?php elseif (! $hasEventRecords): ?>
-            <?php if ($landingPage['events_fallback_rows_items'] !== []): ?>
+            <?php if ($fallbackEvents !== []): ?>
                 <?php
                 $eventColors = ['primary', 'success', 'dark'];
                 $eventBadgeColors = ['success', 'warning', 'info'];
                 ?>
                 <div class="row g-8">
-                    <?php foreach ($landingPage['events_fallback_rows_items'] as $index => [$date, $year, $status, $category, $title, $description, $location]): ?>
+                    <?php foreach ($fallbackEvents as $index => [$date, $year, $status, $category, $title, $description, $location]): ?>
                         <?php
                         $color = $eventColors[$index % count($eventColors)];
                         $statusColor = $eventBadgeColors[$index % count($eventBadgeColors)];

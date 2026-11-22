@@ -48,8 +48,15 @@ var KTPricingGeneral = function () {
     return {
         init: function () {
             element = document.querySelector('#kt_pricing');
-			planPeriodMonthButton = element.querySelector('[data-kt-plan="month"]');
-			planPeriodAnnualButton = element.querySelector('[data-kt-plan="annual"]');
+            if (!element) {
+                return;
+            }
+
+            planPeriodMonthButton = element.querySelector('[data-kt-plan="month"]');
+            planPeriodAnnualButton = element.querySelector('[data-kt-plan="annual"]');
+            if (!planPeriodMonthButton || !planPeriodAnnualButton) {
+                return;
+            }
 
             // Handlers
             handlePlanPeriodSelection();

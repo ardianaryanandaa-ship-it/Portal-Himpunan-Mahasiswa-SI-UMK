@@ -1,4 +1,11 @@
 <!--begin::News Section-->
+<?php
+$fallbackNews = [
+    ['Akademik & IT', '18 Nov 2024', 'HIMA SI UMK Sukses Gelar Workshop Web Modern & REST API', 'Pelatihan hands-on intensif diikuti oleh lebih dari 100 mahasiswa untuk meningkatkan kapabilitas software engineering.', 'assets/media/stock/600x400/img-1.jpg'],
+    ['Prestasi', '12 Nov 2024', 'Delegasi Mahasiswa SI Sabet Juara dalam Hackathon Nasional', 'Inovasi aplikasi smart agriculture berbasis IoT mengantarkan tim mahasiswa Sistem Informasi UMK meraih podium kejuaraan.', 'assets/media/stock/600x400/img-2.jpg'],
+    ['Organisasi', '05 Nov 2024', 'Open Recruitment Pengurus HIMA SI: Bersama Bertumbuh & Mengabdi', 'Kesempatan emas bagi seluruh mahasiswa aktif Sistem Informasi untuk mengasah kepemimpinan dan memperluas relasi.', 'assets/media/stock/600x400/img-3.jpg'],
+];
+?>
 <div class="py-10 py-lg-20 bg-light" id="news">
     <!--begin::Container-->
     <div class="container">
@@ -6,19 +13,19 @@
         <div class="text-center mb-12">
             <!--begin::Badge-->
             <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-4 py-2 text-uppercase">
-                <?= esc($landingPage['news_badge']) ?>
+                Kabar &amp; Informasi
             </span>
             <!--end::Badge-->
 
             <!--begin::Title-->
             <h2 class="fs-2hx text-gray-900 mb-5" data-kt-scroll-offset="{default: 100, lg: 150}">
-                <?= esc($landingPage['news_title']) ?>
+                Berita &amp; Artikel Terkini
             </h2>
             <!--end::Title-->
 
             <!--begin::Description-->
             <div class="fs-5 text-muted fw-semibold max-w-700px mx-auto">
-                <?= nl2br(esc($landingPage['news_description'])) ?>
+                Update terkini mengenai kegiatan organisasi, prestasi mahasiswa, dan informasi penting di lingkungan Sistem Informasi UMK.
             </div>
             <!--end::Description-->
         </div>
@@ -53,10 +60,10 @@
                 <?php endforeach; ?>
             </div>
         <?php elseif (! $hasNewsRecords): ?>
-            <?php if ($landingPage['news_fallback_rows_items'] !== []): ?>
+            <?php if ($fallbackNews !== []): ?>
                 <?php $newsColors = ['primary', 'success', 'warning']; ?>
                 <div class="row g-8">
-                    <?php foreach ($landingPage['news_fallback_rows_items'] as $index => [$category, $date, $title, $description, $image]): ?>
+                    <?php foreach ($fallbackNews as $index => [$category, $date, $title, $description, $image]): ?>
                         <?php
                         $color = $newsColors[$index % count($newsColors)];
                         $imageUrl = base_url(ltrim($image, '/'));

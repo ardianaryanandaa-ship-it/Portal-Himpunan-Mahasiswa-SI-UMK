@@ -18,22 +18,22 @@
 				<div class="col-lg-6 pe-lg-16 mb-10 mb-lg-0">
 					<!--begin::Block Sekretariat-->
 					<div class="rounded landing-dark-border p-8 mb-8">
-						<h3 class="text-white fw-bold mb-3"><?= esc($landingPage['footer_contact_title']) ?></h3>
+						<h3 class="text-white fw-bold mb-3">Basecamp HIMA SI UMK</h3>
 						<p class="fw-normal fs-5 text-gray-500 mb-4">
-							<?= nl2br(esc($landingPage['footer_address'])) ?>
+							Gedung PKM Lantai 2, Kampus UMK Gondangmanis, PO BOX 53 Bae, Kudus, Jawa Tengah 59327
 						</p>
 						<div class="d-flex align-items-center text-gray-400 fs-6">
 							<i class="ki-duotone ki-sms fs-4 text-primary me-2"><span class="path1"></span><span class="path2"></span></i>
-							Email Resmi: <a href="mailto:<?= esc($landingPage['footer_email'], 'attr') ?>" class="text-white text-hover-primary ms-2 fw-semibold"><?= esc($landingPage['footer_email']) ?></a>
+							Email Resmi: <a href="mailto:himasi@umk.ac.id" class="text-white text-hover-primary ms-2 fw-semibold">himasi@umk.ac.id</a>
 						</div>
 					</div>
 					<!--end::Block Sekretariat-->
 
 					<!--begin::Block Kerjasama-->
 					<div class="rounded landing-dark-border p-8">
-						<h3 class="text-white fw-bold mb-3"><?= esc($landingPage['footer_partnership_title']) ?></h3>
+						<h3 class="text-white fw-bold mb-3">Kolaborasi &amp; Kemitraan</h3>
 						<p class="fw-normal fs-5 text-gray-500 mb-4">
-							<?= nl2br(esc($landingPage['footer_partnership_description'])) ?>
+							Terbuka untuk kolaborasi event IT, workshop bersama, publikasi media partner, dan program sponsorship industri.
 						</p>
 						<a href="#aspirations" class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary text-white" data-kt-scroll-toggle="true">
 							Hubungi Divisi Humas

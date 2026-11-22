@@ -1,4 +1,13 @@
 <!--begin::FAQ Section-->
+<?php
+$fallbackFaqs = [
+    ['Apa itu HIMA SI Universitas Muria Kudus?', 'HIMA SI (Himpunan Mahasiswa Sistem Informasi) adalah organisasi kemahasiswaan resmi di bawah naungan Program Studi Sistem Informasi, Fakultas Teknik, Universitas Muria Kudus. Himpunan ini berfungsi sebagai wadah aspirasi, peningkatan kompetensi teknologi, serta pembinaan karakter mahasiswa.'],
+    ['Siapa saja yang otomatis menjadi anggota HIMA SI?', 'Seluruh mahasiswa aktif yang terdaftar di Program Studi Sistem Informasi Fakultas Teknik Universitas Muria Kudus secara otomatis adalah anggota HIMA SI dan berhak mengikuti seluruh program serta kegiatan yang diselenggarakan.'],
+    ['Bagaimana cara bergabung menjadi Pengurus HIMA SI?', 'Rekrutmen pengurus baru (Open Recruitment) diadakan setiap satu tahun sekali menjelang pergantian periode kepengurusan. Proses seleksi meliputi pendaftaran berkas administrasi, wawancara kepribadian/kompetensi divisi, dan masa magang pengurus.'],
+    ['Apa saja manfaat yang didapatkan dengan aktif berorganisasi di HIMA SI?', 'Anda akan mendapatkan pengalaman kepemimpinan riil, mengasah kemampuan kerja sama tim (teamwork), manajemen acara (event management), sertifikat keaktifan berorganisasi (SKPI), serta jaringan relasi luas dengan dosen, alumni, dan profesional industri IT.'],
+    ['Apakah workshop koding dan bootcamp terbuka untuk pemula?', 'Tentu saja! Sebagian besar pelatihan dan workshop koding yang kami adakan dirancang berjenjang dari level dasar (beginner-friendly) dengan didampingi mentor mahasiswa senior dan praktisi agar mudah dipahami oleh seluruh peserta.'],
+];
+?>
 <div class="py-10 py-lg-20 bg-light" id="faq">
     <!--begin::Container-->
     <div class="container">
@@ -6,19 +15,19 @@
         <div class="text-center mb-12">
             <!--begin::Badge-->
             <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-4 py-2 text-uppercase">
-                <?= esc($landingPage['faq_badge']) ?>
+                Tanya Jawab Umum
             </span>
             <!--end::Badge-->
 
             <!--begin::Title-->
             <h2 class="fs-2hx text-gray-900 mb-5" data-kt-scroll-offset="{default: 100, lg: 150}">
-                <?= esc($landingPage['faq_title']) ?>
+                Pertanyaan yang Sering Diajukan (FAQ)
             </h2>
             <!--end::Title-->
 
             <!--begin::Description-->
             <div class="fs-5 text-muted fw-semibold max-w-700px mx-auto">
-                <?= nl2br(esc($landingPage['faq_description'])) ?>
+                Temukan jawaban atas berbagai pertanyaan umum seputar keanggotaan, kepengurusan, dan program kegiatan HIMA SI UMK.
             </div>
             <!--end::Description-->
         </div>
@@ -47,8 +56,8 @@
                             </div>
                         <?php endforeach; ?>
                     <?php elseif (! $hasFaqRecords): ?>
-                        <?php if ($landingPage['faq_fallback_rows_items'] !== []): ?>
-                            <?php foreach ($landingPage['faq_fallback_rows_items'] as $index => [$question, $answer]): ?>
+                        <?php if ($fallbackFaqs !== []): ?>
+                            <?php foreach ($fallbackFaqs as $index => [$question, $answer]): ?>
                                 <?php $faqId = 'landing_faq_' . $index; ?>
                                 <div class="accordion-item mb-4 rounded-3 border border-gray-200 bg-white shadow-sm overflow-hidden">
                                     <h2 class="accordion-header" id="<?= esc($faqId) ?>_header">

@@ -1,5 +1,12 @@
 <!--begin::Aspirations Section-->
 <!-- Menampilkan aspirasi publik, testimoni yang dipublikasikan, dan formulir pengiriman aspirasi. -->
+<?php
+$fallbackTestimonials = [
+    ['Tempat Belajar Soft Skill Terbaik', 'Aktif di HIMA SI mengajarkan saya cara memimpin tim, problem solving dalam tekanan, dan membangun relasi kerja yang solid.', 'Ahmad Rizky Pratama', 'Mahasiswa SI Angkatan 2021'],
+    ['Workshop Sangat Relevan Industri', 'Materi bootcamp koding dan UI/UX yang diadakan HIMA SI sangat aplikatif dan membantu saya ketika melamar magang di tech company.', 'Siti Nurhaliza', 'Alumni Sistem Informasi UMK'],
+    ['Solid, Terbuka, & Kolaboratif', 'Sebagai mahasiswa baru, saya merasa sangat dirangkul oleh para senior. Suasana kekeluargaan di HIMA SI UMK luar biasa hangat!', 'Bagas Dwi Saputra', 'Mahasiswa SI Angkatan 2023'],
+];
+?>
 <div class="py-10 py-lg-20" id="aspirations">
     <!--begin::Container-->
     <div class="container">
@@ -7,19 +14,19 @@
         <div class="text-center mb-15">
             <!--begin::Badge-->
             <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-4 py-2 text-uppercase">
-                <?= esc($landingPage['testimonials_badge']) ?>
+                Aspirasi &amp; Testimoni
             </span>
             <!--end::Badge-->
 
             <!--begin::Title-->
             <h2 class="fs-2hx text-gray-900 mb-5" id="clients" data-kt-scroll-offset="{default: 125, lg: 150}">
-                <?= esc($landingPage['testimonials_title']) ?>
+                Suara Mahasiswa &amp; Alumni
             </h2>
             <!--end::Title-->
 
             <!--begin::Description-->
             <div class="fs-5 text-muted fw-semibold max-w-700px mx-auto">
-                <?= nl2br(esc($landingPage['testimonials_description'])) ?>
+                Ruang keterbukaan untuk mendengarkan kesan, ide konstruktif, dan aspirasi demi kemajuan iklim akademik serta organisasi HIMA SI UMK.
             </div>
             <!--end::Description-->
         </div>
@@ -40,7 +47,7 @@
                 ];
             }
             if ($testimonialItems === []) {
-                $testimonialItems = $landingPage['testimonial_rows_items'];
+                $testimonialItems = $fallbackTestimonials;
             }
             ?>
             <?php foreach ($testimonialItems as $index => [$title, $description, $name, $role]): ?>
@@ -77,14 +84,14 @@
         <div class="card card-flush border border-gray-200 rounded-4 p-8 p-lg-12 shadow-sm">
             <div class="row align-items-center">
                 <div class="col-lg-5 mb-8 mb-lg-0">
-                    <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-3 py-2"><?= esc($landingPage['aspiration_badge']) ?></span>
-                    <h3 class="fs-2hx fw-bold text-gray-900 mb-4"><?= esc($landingPage['aspiration_title']) ?></h3>
+                    <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-3 py-2">KOTAK ASPIRASI ONLINE</span>
+                    <h3 class="fs-2hx fw-bold text-gray-900 mb-4">Punya Ide atau Masukan untuk HIMA SI?</h3>
                     <p class="fs-6 text-gray-600 mb-6">
-                        <?= nl2br(esc($landingPage['aspiration_description'])) ?>
+                        Sampaikan kritik, ide program kerja, saran fasilitas laboratorium, maupun aspirasi lainnya secara terbuka atau anonim. Setiap masukan sangat berharga bagi kami.
                     </p>
                     <div class="d-flex align-items-center text-gray-700 fs-6">
                         <i class="ki-duotone ki-shield-tick fs-2 text-success me-3"><span class="path1"></span><span class="path2"></span></i>
-                        <?= esc($landingPage['aspiration_privacy']) ?>
+                        Kerahasiaan data dan pesan Anda terjamin aman.
                     </div>
                 </div>
                 <div class="col-lg-7">

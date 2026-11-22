@@ -1,4 +1,10 @@
 <!--begin::Achievements & Statistics Section-->
+<?php
+$achievementFallback = 30;
+$memberCount = 500;
+$programCount = 25;
+$partnerCount = 12;
+?>
 <div class="achievements-section position-relative overflow-hidden">
     <!--begin::Wrapper-->
     <div class="py-16 py-lg-20 landing-dark-bg achievements-wrapper">
@@ -8,17 +14,17 @@
             <div class="text-center mt-15 mb-18" id="achievements" data-kt-scroll-offset="{default: 100, lg: 150}">
                 <!--begin::Badge-->
                 <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-4 py-2 text-uppercase">
-                    <?= esc($landingPage['achievements_badge']) ?>
+                    Prestasi &amp; Jejak Langkah
                 </span>
                 <!--end::Badge-->
 
                 <!--begin::Title-->
-                <h3 class="fs-2hx text-white fw-bold mb-5"><?= esc($landingPage['achievements_title']) ?></h3>
+                <h3 class="fs-2hx text-white fw-bold mb-5">Bukti Nyata Kinerja &amp; Capaian</h3>
                 <!--end::Title-->
 
                 <!--begin::Description-->
                 <div class="fs-5 text-gray-500 fw-semibold max-w-700px mx-auto">
-                    <?= nl2br(esc($landingPage['achievements_description'])) ?>
+                    Dedikasi segenap pengurus dan mahasiswa Sistem Informasi Universitas Muria Kudus yang tercermin dalam angka dan prestasi membanggakan.
                 </div>
                 <!--end::Description-->
             </div>
@@ -37,9 +43,9 @@
                         </i>
                         <div class="mb-0 text-center">
                             <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
-                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc((string) ($achievementCount ?: $landingPage['achievements_stat_fallback'])) ?>" data-kt-countup-suffix="+">0</div>
+                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc((string) ($achievementCount ?: $achievementFallback)) ?>" data-kt-countup-suffix="+">0</div>
                             </div>
-                            <span class="text-gray-500 fw-semibold fs-6"><?= esc($landingPage['achievements_stat_label']) ?></span>
+                            <span class="text-gray-500 fw-semibold fs-6">Prestasi Lomba</span>
                         </div>
                     </div>
                     <!--end::Item 1-->
@@ -55,9 +61,9 @@
                         </i>
                         <div class="mb-0 text-center">
                             <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
-                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc($landingPage['members_stat_value']) ?>" data-kt-countup-suffix="+">0</div>
+                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc((string) $memberCount) ?>" data-kt-countup-suffix="+">0</div>
                             </div>
-                            <span class="text-gray-500 fw-semibold fs-6"><?= esc($landingPage['members_stat_label']) ?></span>
+                            <span class="text-gray-500 fw-semibold fs-6">Mahasiswa Aktif</span>
                         </div>
                     </div>
                     <!--end::Item 2-->
@@ -74,9 +80,9 @@
                         </i>
                         <div class="mb-0 text-center">
                             <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
-                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc($landingPage['program_stat_value']) ?>" data-kt-countup-suffix="+">0</div>
+                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc((string) $programCount) ?>" data-kt-countup-suffix="+">0</div>
                             </div>
-                            <span class="text-gray-500 fw-semibold fs-6"><?= esc($landingPage['program_stat_label']) ?></span>
+                            <span class="text-gray-500 fw-semibold fs-6">Program Kerja</span>
                         </div>
                     </div>
                     <!--end::Item 3-->
@@ -89,9 +95,9 @@
                         </i>
                         <div class="mb-0 text-center">
                             <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
-                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc($landingPage['partner_stat_value']) ?>" data-kt-countup-suffix="+">0</div>
+                                <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="<?= esc((string) $partnerCount) ?>" data-kt-countup-suffix="+">0</div>
                             </div>
-                            <span class="text-gray-500 fw-semibold fs-6"><?= esc($landingPage['partner_stat_label']) ?></span>
+                            <span class="text-gray-500 fw-semibold fs-6">Mitra &amp; Relasi</span>
                         </div>
                     </div>
                     <!--end::Item 4-->
@@ -125,15 +131,15 @@
             <!--begin::Testimonial / Quote-->
             <div class="fs-2 fw-semibold text-gray-400 text-center mb-4 max-w-800px mx-auto">
                 <span class="fs-1 lh-1 text-primary">&ldquo;</span>
-                <?= nl2br(esc($landingPage['achievements_quote'])) ?>
+                HIMA SI adalah wadah terbaik bagi mahasiswa untuk tidak hanya belajar kode dan sistem, tetapi juga mengasah jiwa kepemimpinan, integritas, dan kepedulian sosial.
                 <span class="fs-1 lh-1 text-primary">&rdquo;</span>
             </div>
             <!--end::Testimonial / Quote-->
 
             <!--begin::Author-->
             <div class="fs-4 fw-semibold text-gray-500 text-center">
-                <span class="text-white fw-bold"><?= esc($landingPage['achievements_quote_author']) ?></span>,
-                <span class="text-gray-500"><?= esc($landingPage['achievements_quote_affiliation']) ?></span>
+                <span class="text-white fw-bold">Program Studi Sistem Informasi</span>,
+                <span class="text-gray-500">Fakultas Teknik Universitas Muria Kudus</span>
             </div>
             <!--end::Author-->
         </div>

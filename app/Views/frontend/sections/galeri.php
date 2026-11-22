@@ -1,16 +1,36 @@
+<?php
+$galleryFallback = [
+    ['Semua Momen', 'assets/media/stock/600x600/img-23.jpg'],
+    ['Semua Momen', 'assets/media/stock/600x600/img-22.jpg'],
+    ['Semua Momen', 'assets/media/stock/600x600/img-21.jpg'],
+    ['Semua Momen', 'assets/media/stock/600x600/img-20.jpg'],
+    ['Workshop & Seminar', 'assets/media/stock/600x600/img-11.jpg'],
+    ['Workshop & Seminar', 'assets/media/stock/600x600/img-12.jpg'],
+    ['Workshop & Seminar', 'assets/media/stock/600x600/img-16.jpg'],
+    ['Workshop & Seminar', 'assets/media/stock/600x600/img-15.jpg'],
+    ['Kompetisi & Prestasi', 'assets/media/stock/600x600/img-15.jpg'],
+    ['Kompetisi & Prestasi', 'assets/media/stock/600x600/img-22.jpg'],
+    ['Kompetisi & Prestasi', 'assets/media/stock/600x600/img-21.jpg'],
+    ['Kompetisi & Prestasi', 'assets/media/stock/600x600/img-14.jpg'],
+    ['Makrab & Sosial', 'assets/media/stock/600x600/img-23.jpg'],
+    ['Makrab & Sosial', 'assets/media/stock/600x600/img-12.jpg'],
+    ['Makrab & Sosial', 'assets/media/stock/600x600/img-16.jpg'],
+    ['Makrab & Sosial', 'assets/media/stock/600x600/img-20.jpg'],
+];
+?>
 <div class="py-10 py-lg-20" id="portfolio">
     <div class="container">
         <div class="card" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))">
             <div class="card-body p-lg-20">
                 <div class="text-center mb-5 mb-lg-10">
                     <span class="badge badge-light-primary fs-7 fw-bold mb-3 px-4 py-2 text-uppercase">
-                        <?= esc($landingPage['gallery_badge']) ?>
+                        Dokumentasi &amp; Jejak Karya
                     </span>
                     <h3 class="fs-2hx text-gray-900 mb-5" data-kt-scroll-offset="{default: 100, lg: 250}">
-                        <?= esc($landingPage['gallery_title']) ?>
+                        Galeri Aktivitas HIMA SI
                     </h3>
                     <div class="fs-5 text-muted fw-semibold max-w-700px mx-auto">
-                        <?= nl2br(esc($landingPage['gallery_description'])) ?>
+                        Momen-momen berharga dan kebersamaan dalam setiap agenda, kompetisi, dan program kerja HIMA SI UMK.
                     </div>
                 </div>
 
@@ -65,9 +85,9 @@
                         <?php endif; ?>
                     </div>
                 <?php elseif (! $hasGalleryRecords): ?>
-                    <?php if ($landingPage['gallery_fallback_rows_items'] !== []): ?>
+                    <?php if ($galleryFallback !== []): ?>
                         <div class="row g-6">
-                            <?php foreach ($landingPage['gallery_fallback_rows_items'] as [$category, $path]): ?>
+                            <?php foreach ($galleryFallback as [$category, $path]): ?>
                                 <?php $imageUrl = base_url(ltrim($path, '/')); ?>
                                 <div class="col-sm-6 col-lg-3">
                                     <article class="card card-flush h-100 border border-gray-200 overflow-hidden hover-elevate-up">

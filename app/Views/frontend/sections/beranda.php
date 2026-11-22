@@ -1,13 +1,22 @@
 <!--begin::Landing hero-->
 <!-- Bagian hero menampilkan judul utama, deskripsi, tombol navigasi, dan sorotan HIMA SI. -->
 <!-- Tinggi hero diperbesar agar foto bersama tetap dominan pada desktop dan seluler. -->
+<?php
+$typedTexts = ['Masa Depan Teknologi', 'Generasi Unggul', 'Inovasi & Kreativitas', 'Prestasi & Kolaborasi'];
+$heroHighlights = [
+    ['HIMA SI', 'Organisasi Mahasiswa'],
+    ['UMK', 'Universitas Muria Kudus'],
+    ['Sistem Informasi', 'Fakultas Teknik'],
+    ['Inovatif & Unggul', 'Riset & Kolaborasi'],
+];
+?>
 <div class="d-flex flex-column flex-center w-100 hero-section-height px-9">
     <!--begin::Heading-->
     <div class="text-center mb-5 mb-lg-10 py-10 py-lg-20">
         <!--begin::Badge-->
         <div class="d-flex flex-center mb-5">
             <span class="badge badge-light-primary fs-7 fw-bold px-4 py-3 text-uppercase">
-                <?= esc($landingPage['hero_badge']) ?>
+                Himpunan Mahasiswa Sistem Informasi &bull; Universitas Muria Kudus
             </span>
         </div>
         <!--end::Badge-->
@@ -15,10 +24,9 @@
         <!--begin::Title-->
         <!-- Judul dibagi menjadi dua baris agar posisi teks tetap stabil saat animasi berjalan. -->
         <h1 class="text-white lh-base fw-bold fs-2x fs-lg-3x mb-6 text-center">
-            <span class="hero-title-line"><?= esc($landingPage['hero_title_lead']) ?></span>
+            <span class="hero-title-line">Bersama Membangun</span>
             <span class="hero-title-line hero-title-line-secondary">
-                <span class="text-white"><?= esc($landingPage['hero_title_secondary']) ?></span>
-                <?php $typedTexts = array_values(array_filter(array_map(static fn (array $item): string => trim($item[0]), $landingPage['hero_typed_texts_items']))); ?>
+                <span class="text-white">Generasi Digital &amp;</span>
                 <span class="text-primary d-inline-block" id="kt_landing_hero_text"><?= esc($typedTexts[0] ?? '') ?></span>
             </span>
         </h1>
@@ -26,7 +34,7 @@
 
         <!--begin::Description-->
         <p class="text-white opacity-75 fs-4 fs-lg-3 mw-lg-750px mx-auto mb-10 text-center lh-lg">
-            <?= nl2br(esc($landingPage['hero_description'])) ?>
+            Wadah pengembangan potensi, kepemimpinan, riset teknologi, kreativitas, dan kolaborasi mahasiswa Sistem Informasi Fakultas Teknik Universitas Muria Kudus.
         </p>
         <!--end::Description-->
 
@@ -38,7 +46,7 @@
                     <span class="path2"></span>
                     <span class="path3"></span>
                 </i>
-                <?= esc($landingPage['hero_button_about']) ?>
+                Kenali Kami
             </a>
 
             <a href="#portfolio" class="btn btn-outline border-2 btn-outline-white fs-6 fw-semibold px-6 py-3" data-kt-scroll-toggle="true">
@@ -48,7 +56,7 @@
                     <span class="path3"></span>
                     <span class="path4"></span>
                 </i>
-                <?= esc($landingPage['hero_button_programs']) ?>
+                Program Kerja
             </a>
 
             <a href="#achievements" class="btn btn-light-primary fs-6 fw-semibold px-6 py-3" data-kt-scroll-toggle="true">
@@ -56,7 +64,7 @@
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                <?= esc($landingPage['hero_button_events']) ?>
+                Lihat Kegiatan
             </a>
         </div>
         <!--end::Action-->
@@ -67,7 +75,7 @@
     <div class="d-flex flex-center flex-wrap position-relative gap-4 px-5">
         <?php
         $highlightIcons = ['ki-people', 'ki-bank', 'ki-technology-4', 'ki-award'];
-        foreach ($landingPage['hero_highlights_items'] as $index => [$title, $description]):
+        foreach ($heroHighlights as $index => [$title, $description]):
             $icon = $highlightIcons[$index % count($highlightIcons)];
         ?>
         <!-- Item 1: Organisasi Mahasiswa -->

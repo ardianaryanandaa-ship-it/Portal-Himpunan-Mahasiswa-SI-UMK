@@ -2,12 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Libraries\LandingPageContent;
 use App\Models\AspirasiModel;
 
 class Home extends BaseController
 {
-    public function index()
+    public function index(): string
     {
         $publishedAspirations = model(AspirasiModel::class)
             ->where('is_published', 1)
@@ -17,7 +16,6 @@ class Home extends BaseController
 
         return view('frontend/pages/home', [
             'title' => 'Beranda - HIMA SI',
-            'landingPage' => LandingPageContent::values(),
             'news' => [],
             'hasNewsRecords' => false,
             'events' => [],
