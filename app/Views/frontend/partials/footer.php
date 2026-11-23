@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="<?= base_url('assets/plugins/custom/typedjs/typedjs.bundle.js') ?>"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="<?= base_url('assets/js/custom/landing.js') ?>?v=20261122"></script>
+<script src="<?= base_url('assets/js/custom/landing.js') ?>?v=20261123"></script>
 <script src="<?= base_url('assets/js/custom/pages/pricing/general.js') ?>"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {

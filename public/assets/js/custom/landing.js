@@ -57,10 +57,25 @@ var KTLandingPage = (function () {
     }
   };
 
+  var initHeaderScrollAnimation = function () {
+    var header = document.querySelector(".landing-header");
+    if (!header) {
+      return;
+    }
+
+    var updateHeader = function () {
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  };
+
   // API publik untuk memulai fungsi khusus halaman landing.
   return {
     init: function () {
       initHeroTextRotation();
+      initHeaderScrollAnimation();
     },
   };
 })();
