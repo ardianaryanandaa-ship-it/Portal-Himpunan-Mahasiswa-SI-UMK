@@ -1,5 +1,6 @@
 <!--begin::Header-->
-					<div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+					<div class="landing-header-spacer">
+						<div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
 						<!--begin::Container-->
 						<div class="container">
 							<!--begin::Wrapper-->
@@ -96,5 +97,6 @@
 							<!--end::Wrapper-->
 						</div>
 						<!--end::Container-->
+					</div>
 					</div>
 					<!--end::Header-->
