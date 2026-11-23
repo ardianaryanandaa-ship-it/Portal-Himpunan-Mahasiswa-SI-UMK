@@ -8,6 +8,15 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class AspirasiController extends BaseController
 {
+    public static function publishedForLanding(): array
+    {
+        return model(AspirasiModel::class)
+            ->where('is_published', 1)
+            ->where('deleted_at', null)
+            ->orderBy('published_at', 'DESC')
+            ->findAll(3);
+    }
+
     // Memuat model aspirasi agar seluruh aksi menggunakan satu akses database.
     private function model(): AspirasiModel
     {
@@ -56,7 +65,7 @@ class AspirasiController extends BaseController
                 ->with('aspiration_error', 'Aspirasi belum dapat disimpan. Silakan coba lagi.');
         }
 
-        return redirect()->to(site_url('/#aspirations'))
+        return redirect()->to(site_url('landing#aspirations'))
             ->with('aspiration_success', 'Terima kasih! Aspirasi Anda berhasil dikirim dan akan ditinjau oleh pengurus.');
     }
 

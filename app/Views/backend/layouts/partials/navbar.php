@@ -8,6 +8,9 @@
             <a class="nav-link px-3 px-lg-4 py-3 border-bottom border-3 <?= str_starts_with($currentUri, 'admin/aspirasi') ? 'active fw-bold text-primary border-primary' : 'text-gray-700 border-transparent' ?>" href="<?= site_url('admin/aspirasi') ?>" <?= str_starts_with($currentUri, 'admin/aspirasi') ? 'aria-current="page"' : '' ?>>
                 Aspirasi
             </a>
+            <a class="nav-link px-3 px-lg-4 py-3 border-bottom border-3 <?= str_starts_with($currentUri, 'admin/galeri') ? 'active fw-bold text-primary border-primary' : 'text-gray-700 border-transparent' ?>" href="<?= site_url('admin/galeri') ?>" <?= str_starts_with($currentUri, 'admin/galeri') ? 'aria-current="page"' : '' ?>>
+                Galeri
+            </a>
         </div>
         <a class="btn btn-sm btn-light-primary ms-3 flex-shrink-0" href="<?= site_url('/') ?>">Lihat situs</a>
     </div>
