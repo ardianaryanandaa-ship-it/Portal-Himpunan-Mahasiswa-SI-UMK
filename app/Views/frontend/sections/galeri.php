@@ -42,7 +42,7 @@
                         <?php else: ?>
                             <?php foreach ($galleries as $gallery): ?>
                                 <?php
-                                $cover = trim((string) ($gallery['cover_image'] ?? ''));
+                                $cover = trim((string) ($gallery['image'] ?? $gallery['cover_image'] ?? ''));
                                 $imageUrl = $cover !== '' ? base_url(ltrim($cover, '/')) : base_url('assets/media/stock/600x400/img-1.jpg');
                                 ?>
                                 <div class="col-sm-6 col-lg-3">

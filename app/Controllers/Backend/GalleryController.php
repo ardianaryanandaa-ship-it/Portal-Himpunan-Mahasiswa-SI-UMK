@@ -10,6 +10,21 @@ use RuntimeException;
 
 class GalleryController extends BaseController
 {
+    public static function publishedForLanding(): array
+    {
+        $galleries = model(GalleryModel::class)
+            ->where('is_active', 1)
+            ->orderBy('sort_order', 'ASC')
+            ->orderBy('event_date', 'DESC')
+            ->findAll();
+
+        return [
+            'galleries'         => $galleries,
+            'hasGalleryRecords' => $galleries !== [],
+            'galleryItems'      => [],
+        ];
+    }
+
     public function index()
     {
         $model = model(GalleryModel::class);
