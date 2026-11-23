@@ -1,10 +1,9 @@
 <?php
 $typedTexts = ['Masa Depan Teknologi', 'Generasi Unggul', 'Inovasi & Kreativitas', 'Prestasi & Kolaborasi'];
 $heroHighlights = [
-    ['HIMA SI', 'Organisasi mahasiswa'],
-    ['UMK', 'Universitas Muria Kudus'],
-    ['Sistem Informasi', 'Fakultas Teknik'],
-    ['Berkarya bersama', 'Inovasi & kolaborasi'],
+    'Organisasi Mahasiswa',
+    'Universitas Muria Kudus',
+    'Fakultas Teknik',
 ];
 ?>
 <div class="hero-section-height w-100">
@@ -43,24 +42,8 @@ $heroHighlights = [
     </div>
 
     <div class="hero-highlights" aria-label="Tentang HIMA SI">
-        <?php
-        $highlightIcons = ['ki-people', 'ki-bank', 'ki-technology-4', 'ki-award'];
-        foreach ($heroHighlights as $index => [$title, $description]):
-            $icon = $highlightIcons[$index % count($highlightIcons)];
-        ?>
-            <div class="hero-highlight">
-                <span class="hero-highlight-icon" aria-hidden="true">
-                    <i class="ki-duotone <?= esc($icon) ?>">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                        <span class="path3"></span>
-                    </i>
-                </span>
-                <span class="hero-highlight-copy">
-                    <span class="hero-highlight-title"><?= esc($title) ?></span>
-                    <span class="hero-highlight-description"><?= esc($description) ?></span>
-                </span>
-            </div>
+        <?php foreach ($heroHighlights as $highlight): ?>
+            <span class="hero-highlight"><?= esc($highlight) ?></span>
         <?php endforeach; ?>
     </div>
 </div>
