@@ -3,11 +3,8 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
-<<<<<<< HEAD
 $routes->get('/', 'Home::index', ['as' => 'home']);
 $routes->get('landing', 'Frontend\LandingController::index', ['as' => 'landing']);
-=======
->>>>>>> origin/nando
 
 // Halaman publik
 $routes->get('/', 'Home::index', ['as' => 'home', 'filter' => 'honeypot']);
@@ -42,7 +39,6 @@ $routes->post('aspirasi', 'Backend\AspirasiController::store', ['filter' => 'hon
 $routes->group('admin', ['filter' => 'auth', 'namespace' => 'App\Controllers\Backend'], static function ($routes) {
     $routes->get('/', 'DashboardController::index');
 
-<<<<<<< HEAD
 $routes->group('admin/galeri', ['filter' => 'auth', 'namespace' => 'App\Controllers\Backend'], static function ($routes) {
     $routes->get('/', 'GaleriController::index');
     $routes->get('tambah', 'GaleriController::create');
@@ -60,7 +56,6 @@ $routes->get('admin/aspirasi/(:num)', 'Backend\AspirasiController::show/$1', ['f
 $routes->post('admin/aspirasi/(:num)/status', 'Backend\AspirasiController::updateStatus/$1', ['filter' => 'auth']);
 $routes->post('admin/aspirasi/(:num)/publish', 'Backend\AspirasiController::togglePublish/$1', ['filter' => 'auth']);
 $routes->post('admin/aspirasi/(:num)/delete', 'Backend\AspirasiController::delete/$1', ['filter' => 'auth']);
-=======
     $routes->get('profil', 'ProfileController::index');
     $routes->post('profil', 'ProfileController::update');
     $routes->get('profil/password', 'ProfileController::changePassword');
@@ -155,4 +150,3 @@ $routes->post('admin/aspirasi/(:num)/delete', 'Backend\AspirasiController::delet
         $routes->post('(:num)/pendaftar/(:num)/status', 'RecruitmentController::updateApplicationStatus/$1/$2');
     });
 });
->>>>>>> origin/nando
