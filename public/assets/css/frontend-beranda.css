@@ -279,7 +279,6 @@ body[data-kt-sticky-landing-header="on"] {
   }
 }
 
-.landing-header .btn-primary,
 .landing-curve.landing-dark-color {
   color: var(--hima-blue-900);
 }

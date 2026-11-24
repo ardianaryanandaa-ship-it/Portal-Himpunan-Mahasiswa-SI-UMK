@@ -28,6 +28,7 @@ body {
   background: #f8fafc;
 }
 
+.landing-header .btn-primary,
 .btn-primary {
   background: var(--hima-blue-700) !important;
   border-color: var(--hima-blue-700) !important;

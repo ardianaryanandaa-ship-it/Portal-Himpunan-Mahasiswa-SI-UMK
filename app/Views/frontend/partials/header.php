@@ -1,6 +1,7 @@
 <?php
 $organization = config('Organization');
-$isLanding    = $isLanding ?? false;
+$currentPath  = trim(uri_string(), '/');
+$isLanding    = ($isLanding ?? false) || $currentPath === '' || $currentPath === 'landing';
 $frontendStylesheets = ['frontend-base.css'];
 
 if ($isLanding) {
@@ -19,7 +20,7 @@ if ($isLanding) {
 	]);
 } else {
 	$frontendStylesheets[] = 'frontend-page.css';
-	$currentMenu = explode('/', trim(uri_string(), '/'))[0] ?? '';
+	$currentMenu = explode('/', $currentPath)[0] ?? '';
 	$pageStylesheets = [
 		'tentang' => 'frontend-tentang.css',
 		'berita' => 'frontend-berita.css',
