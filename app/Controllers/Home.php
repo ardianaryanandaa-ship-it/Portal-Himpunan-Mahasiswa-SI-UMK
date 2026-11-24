@@ -2,11 +2,8 @@
 
 namespace App\Controllers;
 
-<<<<<<< HEAD
-=======
 use App\Controllers\Backend\GalleryController;
 use App\Libraries\LandingPageContent;
->>>>>>> origin/nando
 use App\Models\AspirasiModel;
 
 class Home extends BaseController

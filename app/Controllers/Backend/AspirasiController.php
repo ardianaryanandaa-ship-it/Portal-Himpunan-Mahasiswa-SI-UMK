@@ -8,7 +8,6 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class AspirasiController extends BaseController
 {
-<<<<<<< HEAD
     public static function publishedForLanding(): array
     {
         return model(AspirasiModel::class)
@@ -19,7 +18,6 @@ class AspirasiController extends BaseController
     }
 
     // Memuat model aspirasi agar seluruh aksi menggunakan satu akses database.
-=======
     private const STATUSES = [
         'pending'     => 'Menunggu',
         'read'        => 'Dibaca',
@@ -33,7 +31,6 @@ class AspirasiController extends BaseController
         'lainnya'   => 'Lainnya',
     ];
 
->>>>>>> origin/nando
     private function model(): AspirasiModel
     {
         return model(AspirasiModel::class);

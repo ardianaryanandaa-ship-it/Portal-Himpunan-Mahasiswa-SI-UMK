@@ -17,14 +17,9 @@ $isLanding    = $isLanding ?? false;
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<link href="<?= base_url('assets/plugins/global/plugins.bundle.css') ?>" rel="stylesheet" type="text/css" />
 		<link href="<?= base_url('assets/css/style.bundle.css') ?>" rel="stylesheet" type="text/css" />
-<<<<<<< HEAD
-		<link href="<?= base_url('assets/css/frontend-custom.css?v=20261123-6') ?>" rel="stylesheet" type="text/css" />
+		<link href="<?= base_url('assets/css/frontend-custom.css?v=20261124-3') ?>" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
-		<script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
-=======
-		<link href="<?= base_url('assets/css/frontend-custom.css') ?>" rel="stylesheet" type="text/css" />
 		<script>if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
->>>>>>> origin/nando
 	</head>
 	<body id="kt_body" class="bg-body position-relative"<?= $isLanding ? ' data-bs-spy="scroll" data-bs-target="#kt_landing_menu"' : '' ?>>
 		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>

@@ -1,10 +1,6 @@
 <!--begin::Header-->
-<<<<<<< HEAD
-					<div class="landing-header">
-=======
 					<div class="landing-header-spacer">
 						<div class="landing-header" data-kt-sticky="true" data-kt-sticky-name="landing-header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
->>>>>>> origin/nando
 						<!--begin::Container-->
 						<div class="container">
 							<!--begin::Wrapper-->
@@ -39,7 +35,7 @@
 										<div class="menu menu-column flex-nowrap menu-rounded menu-xl-row menu-title-gray-600 menu-state-title-primary nav nav-flush fs-6 fw-semibold" id="kt_landing_menu">
 											<!--begin::Menu item-->
 											<div class="menu-item">
-												<a class="menu-link nav-link active py-3 px-2" href="#kt_body" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Beranda</a>
+												<a class="menu-link nav-link py-3 px-2" href="#kt_body" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Beranda</a>
 											</div>
 											<!--end::Menu item-->
 											<!--begin::Menu item-->
