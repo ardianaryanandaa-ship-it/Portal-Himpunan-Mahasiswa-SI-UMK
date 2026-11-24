@@ -1,0 +1,42 @@
+
+
+#vision-mission {
+  background: var(--hima-blue-50) !important;
+}
+
+#vision-mission {
+  position: relative;
+  overflow: hidden;
+}
+
+#vision-mission::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -150px;
+  top: 36px;
+  border: 1px solid rgba(37, 99, 235, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#vision-mission::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  left: -105px;
+  bottom: 48px;
+  border: 1px solid rgba(37, 99, 235, 0.07);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+#vision-mission .card.bg-primary {
+  background: linear-gradient(
+    145deg,
+    var(--hima-blue-700),
+    var(--hima-blue-950)
+  ) !important;
+}

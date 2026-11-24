@@ -1,0 +1,100 @@
+/* HIMA SI frontend theme */
+:root {
+  --hima-blue-950: #0b1f3a;
+  --hima-blue-900: #102a4c;
+  --hima-blue-700: #1d4ed8;
+  --hima-blue-600: #2563eb;
+  --hima-blue-500: #3b82f6;
+  --hima-blue-100: #dbeafe;
+  --hima-blue-50: #eff6ff;
+  --hima-gold: #fbbf24;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  color: #334155;
+  background: #f8fafc;
+}
+
+.btn-primary {
+  background: var(--hima-blue-700) !important;
+  border-color: var(--hima-blue-700) !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.landing-header .btn-primary {
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.landing-header .btn-primary:hover,
+.btn-primary:hover {
+  background: var(--hima-blue-900) !important;
+  border-color: var(--hima-blue-900) !important;
+}
+
+.landing-header .btn-primary:hover {
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
+  transform: translateY(-1px);
+}
+
+.landing-header .menu .menu-link:focus-visible,
+.landing-header .btn-primary:focus-visible,
+.landing-header .hima-brand:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 3px;
+}
+
+.text-primary {
+  color: var(--hima-blue-600) !important;
+}
+
+.badge-light-primary,
+.bg-light-primary {
+  background-color: var(--hima-blue-50) !important;
+  color: var(--hima-blue-700) !important;
+}
+
+.border-primary {
+  border-color: var(--hima-blue-600) !important;
+}
+
+.card {
+  border-radius: 14px !important;
+}
+
+.card.hover-elevate-up,
+.hover-elevate-up {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.card.hover-elevate-up:hover,
+.hover-elevate-up:hover {
+  border-color: #93c5fd !important;
+}
+
+#kt_scrolltop {
+  background: var(--hima-blue-700);
+}
+

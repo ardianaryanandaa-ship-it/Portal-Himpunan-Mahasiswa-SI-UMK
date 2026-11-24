@@ -1,0 +1,36 @@
+#gallery {
+  background: #fff;
+}
+
+#portfolio,
+#gallery {
+  position: relative;
+  overflow: hidden;
+}
+
+#portfolio::before,
+#gallery::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -150px;
+  top: 36px;
+  border: 1px solid rgba(37, 99, 235, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#portfolio::after,
+#gallery::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  left: -105px;
+  bottom: 48px;
+  border: 1px solid rgba(37, 99, 235, 0.07);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
