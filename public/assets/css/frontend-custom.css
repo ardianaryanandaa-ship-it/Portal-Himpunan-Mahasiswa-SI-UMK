@@ -11,8 +11,19 @@
 }
 
 html {
+<<<<<<< HEAD
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+=======
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+>>>>>>> origin/nando
 }
 
 body {
@@ -74,6 +85,7 @@ body {
 }
 
 @media (max-width: 991.98px) {
+<<<<<<< HEAD
   .hero-photo-bg {
     min-height: 720px;
     background:
@@ -85,6 +97,18 @@ body {
       ),
       url("../../gambar/foto-bersama-hima-si.jpeg") center 38% / cover no-repeat;
   }
+=======
+    .hero-photo-bg {
+        min-height: 700px;
+        background:
+            linear-gradient(135deg, rgba(9, 28, 58, 0.84) 0%, rgba(16, 42, 76, 0.72) 58%, rgba(23, 62, 112, 0.82) 100%),
+            url('../../gambar/foto-bersama-hima-si.jpeg') center 35% / cover no-repeat;
+    }
+
+    .hero-section-height {
+        min-height: 700px;
+    }
+>>>>>>> origin/nando
 }
 
 .landing-header {
@@ -120,6 +144,18 @@ body {
   .landing-header.is-scrolled {
     animation: none;
   }
+}
+
+.landing-header-spacer {
+    height: 82px;
+}
+
+[data-kt-sticky-landing-header=on] .landing-header {
+    height: 82px !important;
+}
+
+body[data-kt-sticky-landing-header=on] {
+    padding-top: 0 !important;
 }
 
 .landing-header-inner {
@@ -759,6 +795,7 @@ body {
     height: 76px;
   }
 
+<<<<<<< HEAD
   .landing-header-inner {
     min-height: 76px;
     gap: 12px;
@@ -769,6 +806,24 @@ body {
     height: 40px;
     border-radius: 10px;
   }
+=======
+    .landing-header-spacer {
+        height: 76px;
+    }
+
+    [data-kt-sticky-landing-header=on] .landing-header {
+        height: 76px !important;
+    }
+
+    .landing-header-inner {
+        min-height: 76px;
+        gap: 12px;
+    }
+
+    [data-kt-sticky-landing-header=on] .landing-header-inner {
+        min-height: 76px;
+    }
+>>>>>>> origin/nando
 
   .hima-brand-logo:not(.hima-brand-logo--footer) {
     width: 56px;
@@ -797,10 +852,25 @@ body {
     height: 76px;
   }
 
+<<<<<<< HEAD
   .hima-brand-logo {
     width: 56px;
     height: 56px;
   }
+=======
+    .landing-header-spacer {
+        height: 76px;
+    }
+
+    [data-kt-sticky-landing-header=on] .landing-header {
+        height: 76px !important;
+    }
+
+    .hima-brand-logo {
+        width: 56px;
+        height: 56px;
+    }
+>>>>>>> origin/nando
 
   .hima-brand-logo img {
     height: 132px;
@@ -898,6 +968,7 @@ body {
     letter-spacing: -0.035em;
   }
 
+<<<<<<< HEAD
   .hero-title-line-secondary {
     gap: 0 0.28em;
     font-size: clamp(12px, 4.1vw, 22px);
@@ -934,4 +1005,143 @@ body {
   .hero-highlight + .hero-highlight::before {
     margin-right: 12px;
   }
+=======
+    #home [class*="position-relative"].gap-4 > div .text-start span {
+        white-space: normal;
+        overflow: visible;
+    }
+}
+/* Halaman dalam (berita, galeri, struktur, proker, tentang, kontak) */
+.page-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #ffffff;
+    border-bottom: 1px solid #eef1f5;
+    box-shadow: 0 10px 30px rgba(15, 35, 60, 0.05);
+}
+
+.page-navbar .navbar-brand strong {
+    letter-spacing: -0.01em;
+}
+
+.page-navbar .nav-link {
+    color: #5e6278;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.5rem;
+}
+
+.page-navbar .nav-link:hover,
+.page-navbar .nav-link.active {
+    color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.08);
+}
+
+.page-navbar .navbar-toggler {
+    border: 1px solid #e4e6ef;
+    padding: 0.45rem 0.6rem;
+    border-radius: 0.5rem;
+}
+
+.page-hero {
+    position: relative;
+    background: linear-gradient(120deg, #0b1b33 0%, #12345c 55%, #1b4f7a 100%);
+    overflow: hidden;
+}
+
+.page-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(105, 192, 255, 0.24), transparent 42%),
+        radial-gradient(circle at 12% 88%, rgba(50, 205, 150, 0.18), transparent 40%);
+    pointer-events: none;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.max-w-800px { max-width: 800px; }
+
+.page-section-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #181c32;
+}
+
+.article-content {
+    color: #3f4254;
+    font-size: 1.02rem;
+    line-height: 1.85;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    color: #181c32;
+    font-weight: 700;
+    margin-top: 1.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.article-content p { margin-bottom: 1rem; }
+
+.article-content blockquote {
+    border-left: 4px solid var(--bs-primary);
+    background: #f6f9fc;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+    color: #3f4254;
+}
+
+.article-content img { max-width: 100%; height: auto; border-radius: 0.75rem; }
+
+.empty-state {
+    border: 1px dashed #dbe2ea;
+    border-radius: 0.9rem;
+    background: #fbfcfe;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: #7e8299;
+}
+
+.structure-group + .structure-group { margin-top: 3rem; }
+
+.structure-photo {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(var(--bs-primary-rgb), 0.18);
+}
+
+.structure-initial {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.12);
+}
+
+@media (max-width: 991.98px) {
+    .page-navbar .navbar-collapse {
+        border-top: 1px solid #eef1f5;
+        margin-top: 0.75rem;
+    }
+
+    .page-navbar .nav-link {
+        padding: 0.65rem 0.4rem;
+    }
+>>>>>>> origin/nando
 }

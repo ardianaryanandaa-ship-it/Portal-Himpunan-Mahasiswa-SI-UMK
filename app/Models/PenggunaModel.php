@@ -12,35 +12,62 @@ class PenggunaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['last_login_at'];
+    protected $allowedFields    = [
+        'role_id',
+        'username',
+        'email',
+        'password',
+        'full_name',
+        'avatar',
+        'is_active',
+        'last_login_at',
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
-    protected array $casts = [];
-    protected array $castHandlers = [];
-
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
+    protected $validationRules = [
+        'username'  => 'required|alpha_numeric_punct|min_length[3]|max_length[100]',
+        'email'     => 'required|valid_email|max_length[150]',
+        'full_name' => 'required|max_length[150]',
+        'role_id'   => 'required|integer',
+    ];
+    protected $validationMessages = [
+        'username' => [
+            'required' => 'Username wajib diisi.',
+            'min_length' => 'Username minimal 3 karakter.',
+            'max_length' => 'Username maksimal 100 karakter.',
+        ],
+        'email' => [
+            'required'    => 'Email wajib diisi.',
+            'valid_email' => 'Format email tidak valid.',
+        ],
+        'full_name' => [
+            'required' => 'Nama lengkap wajib diisi.',
+        ],
+        'role_id' => [
+            'required' => 'Role wajib dipilih.',
+        ],
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    public function findByIdentifier(string $identifier): ?array
+    {
+        return $this->select('users.*, roles.slug AS role_slug, roles.name AS role_name')
+            ->join('roles', 'roles.id = users.role_id', 'left')
+            ->groupStart()
+            ->where('users.username', $identifier)
+            ->orWhere('users.email', $identifier)
+            ->groupEnd()
+            ->first();
+    }
 }

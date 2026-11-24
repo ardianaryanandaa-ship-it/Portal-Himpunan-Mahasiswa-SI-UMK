@@ -1,4 +1,4 @@
- <?= $this->include('frontend/partials/header') ?>
+ <?= $this->include('frontend/partials/header', ['isLanding' => true]) ?>
 <!--begin::Main-->
 <!-- Layout utama menyatukan header, navbar, hero, konten section, dan footer halaman. -->
 <!--begin::Root-->
