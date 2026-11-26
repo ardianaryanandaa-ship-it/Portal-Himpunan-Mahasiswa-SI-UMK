@@ -83,7 +83,7 @@ class AspirasiController extends BaseController
                 ->with('aspiration_error', 'Aspirasi belum dapat disimpan. Silakan coba lagi.');
         }
 
-        return redirect()->to(site_url('landing#aspirations'))
+        return redirect()->to(site_url('/#aspirations'))
             ->with('aspiration_success', 'Terima kasih! Aspirasi Anda berhasil dikirim dan akan ditinjau oleh pengurus.');
     }
 

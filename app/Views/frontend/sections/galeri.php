@@ -1,3 +1,4 @@
+<!--begin::Gallery Section-->
 <?php
 $galleryFallback = [
     ['Semua Momen', 'assets/media/stock/600x600/img-23.jpg'],
@@ -17,6 +18,55 @@ $galleryFallback = [
     ['Makrab & Sosial', 'assets/media/stock/600x600/img-16.jpg'],
     ['Makrab & Sosial', 'assets/media/stock/600x600/img-20.jpg'],
 ];
+
+$itemsList = ! empty($galleryItems) ? $galleryItems : (! empty($galleries) ? $galleries : []);
+$initialItems = ! empty($itemsList) ? array_slice($itemsList, 0, 8) : [];
+$remainingItems = ! empty($itemsList) && count($itemsList) > 8 ? array_slice($itemsList, 8) : [];
+
+$fallbackInitial = ! empty($galleryFallback) ? array_slice($galleryFallback, 0, 8) : [];
+$fallbackRemaining = ! empty($galleryFallback) && count($galleryFallback) > 8 ? array_slice($galleryFallback, 8) : [];
+
+$renderGalleryCard = static function ($gallery) {
+    $cover = trim((string) ($gallery['image'] ?? $gallery['cover_image'] ?? $gallery['file_path'] ?? ''));
+    $imageUrl = $cover !== '' ? base_url(ltrim($cover, '/')) : base_url('assets/media/stock/600x400/img-1.jpg');
+    $title = $gallery['title'] ?? $gallery['gallery_title'] ?? 'Dokumentasi HIMA SI';
+    $caption = $gallery['caption'] ?? $gallery['description'] ?? '';
+    ?>
+    <div class="col-sm-6 col-lg-3">
+        <article class="card card-flush h-100 border border-gray-200 overflow-hidden hover-elevate-up shadow-sm">
+            <a href="<?= esc($imageUrl, 'attr') ?>" data-fslightbox="landing-gallery">
+                <img src="<?= esc($imageUrl, 'attr') ?>" alt="<?= esc($title, 'attr') ?>" class="w-100 h-200px object-fit-cover">
+            </a>
+            <div class="card-body p-5">
+                <h4 class="fs-5 fw-bold text-gray-900 mb-2"><?= esc($title) ?></h4>
+                <?php if (! empty($gallery['event_date'])): ?>
+                    <span class="text-muted fs-7 d-block mb-3"><?= esc(date('d M Y', strtotime($gallery['event_date']))) ?></span>
+                <?php endif; ?>
+                <?php if (! empty($caption)): ?>
+                    <p class="text-muted fs-7 mb-0"><?= esc(mb_strimwidth(strip_tags((string) $caption), 0, 100, '...')) ?></p>
+                <?php endif; ?>
+            </div>
+        </article>
+    </div>
+    <?php
+};
+
+$renderFallbackCard = static function (array $item) {
+    [$category, $path] = $item;
+    $imageUrl = base_url(ltrim($path, '/'));
+    ?>
+    <div class="col-sm-6 col-lg-3">
+        <article class="card card-flush h-100 border border-gray-200 overflow-hidden hover-elevate-up shadow-sm">
+            <a href="<?= esc($imageUrl, 'attr') ?>" data-fslightbox="landing-gallery">
+                <img src="<?= esc($imageUrl, 'attr') ?>" alt="<?= esc($category, 'attr') ?>" class="w-100 h-200px object-fit-cover">
+            </a>
+            <div class="card-body p-5">
+                <span class="text-gray-900 fw-bold"><?= esc($category) ?></span>
+            </div>
+        </article>
+    </div>
+    <?php
+};
 ?>
 <div class="py-10 py-lg-20" id="portfolio">
     <div class="container">
@@ -34,73 +84,59 @@ $galleryFallback = [
                     </div>
                 </div>
 
-                <?php if (! empty($galleryItems) || ! empty($galleries)): ?>
+                <?php if (! empty($initialItems)): ?>
+                    <!-- 8 Foto Pertama -->
                     <div class="row g-6">
-                        <?php if (! empty($galleryItems)): ?>
-                            <?php foreach ($galleryItems as $galleryItem): ?>
-                                <?php $imageUrl = base_url(ltrim($galleryItem['file_path'], '/')); ?>
-                                <div class="col-sm-6 col-lg-3">
-                                    <article class="card card-flush h-100 border border-gray-200 overflow-hidden hover-elevate-up">
-                                        <?php if ($galleryItem['media_type'] === 'image'): ?>
-                                            <a href="<?= esc($imageUrl, 'attr') ?>" data-fslightbox="landing-gallery">
-                                                <img src="<?= esc($imageUrl, 'attr') ?>" alt="<?= esc($galleryItem['caption'] ?: $galleryItem['gallery_title'], 'attr') ?>" class="w-100 h-200px object-fit-cover">
-                                            </a>
-                                        <?php else: ?>
-                                            <video class="w-100 h-200px object-fit-cover" controls preload="metadata">
-                                                <source src="<?= esc($imageUrl, 'attr') ?>">
-                                            </video>
-                                        <?php endif; ?>
-                                        <div class="card-body p-5">
-                                            <h4 class="fs-6 fw-bold text-gray-900 mb-2"><?= esc($galleryItem['gallery_title']) ?></h4>
-                                            <?php if (! empty($galleryItem['caption'])): ?>
-                                                <p class="text-muted fs-7 mb-0"><?= esc($galleryItem['caption']) ?></p>
-                                            <?php endif; ?>
-                                        </div>
-                                    </article>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <?php foreach ($galleries as $gallery): ?>
-                                <?php
-                                $cover = trim((string) ($gallery['image'] ?? $gallery['cover_image'] ?? ''));
-                                $imageUrl = $cover !== '' ? base_url(ltrim($cover, '/')) : base_url('assets/media/stock/600x400/img-1.jpg');
-                                ?>
-                                <div class="col-sm-6 col-lg-3">
-                                    <article class="card card-flush h-100 border border-gray-200 overflow-hidden hover-elevate-up">
-                                        <a href="<?= esc($imageUrl, 'attr') ?>" data-fslightbox="landing-gallery">
-                                            <img src="<?= esc($imageUrl, 'attr') ?>" alt="<?= esc($gallery['title'], 'attr') ?>" class="w-100 h-200px object-fit-cover">
-                                        </a>
-                                        <div class="card-body p-5">
-                                            <h4 class="fs-5 fw-bold text-gray-900 mb-2"><?= esc($gallery['title']) ?></h4>
-                                            <?php if (! empty($gallery['event_date'])): ?>
-                                                <span class="text-muted fs-7 d-block mb-3"><?= esc(date('d M Y', strtotime($gallery['event_date']))) ?></span>
-                                            <?php endif; ?>
-                                            <?php if (! empty($gallery['description'])): ?>
-                                                <p class="text-muted fs-7 mb-0"><?= nl2br(esc($gallery['description'])) ?></p>
-                                            <?php endif; ?>
-                                        </div>
-                                    </article>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?php foreach ($initialItems as $item): ?>
+                            <?php $renderGalleryCard($item); ?>
+                        <?php endforeach; ?>
                     </div>
+
+                    <?php if (! empty($remainingItems)): ?>
+                        <!-- Foto Tambahan yang Terbuka ke Bawah Saat Diklik -->
+                        <div class="collapse" id="moreGalleriesCollapse">
+                            <div class="row g-6 mt-1">
+                                <?php foreach ($remainingItems as $item): ?>
+                                    <?php $renderGalleryCard($item); ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Buka/Tutup Galeri Lainnya ke Bawah -->
+                        <div class="text-center mt-12">
+                            <button type="button" class="btn btn-primary px-8 py-3" id="btnToggleMoreGalleries" data-bs-toggle="collapse" data-bs-target="#moreGalleriesCollapse" aria-expanded="false" aria-controls="moreGalleriesCollapse">
+                                <span class="btn-text">Lihat Galeri Lainnya</span>
+                                <i class="ki-duotone ki-down fs-4 ms-2"><span class="path1"></span><span class="path2"></span></i>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+
                 <?php elseif (! $hasGalleryRecords): ?>
-                    <?php if ($galleryFallback !== []): ?>
+                    <?php if ($fallbackInitial !== []): ?>
+                        <!-- 8 Foto Fallback Pertama -->
                         <div class="row g-6">
-                            <?php foreach ($galleryFallback as [$category, $path]): ?>
-                                <?php $imageUrl = base_url(ltrim($path, '/')); ?>
-                                <div class="col-sm-6 col-lg-3">
-                                    <article class="card card-flush h-100 border border-gray-200 overflow-hidden hover-elevate-up">
-                                        <a href="<?= esc($imageUrl, 'attr') ?>" data-fslightbox="landing-gallery">
-                                            <img src="<?= esc($imageUrl, 'attr') ?>" alt="<?= esc($category, 'attr') ?>" class="w-100 h-200px object-fit-cover">
-                                        </a>
-                                        <div class="card-body p-5">
-                                            <span class="text-gray-900 fw-bold"><?= esc($category) ?></span>
-                                        </div>
-                                    </article>
-                                </div>
+                            <?php foreach ($fallbackInitial as $item): ?>
+                                <?php $renderFallbackCard($item); ?>
                             <?php endforeach; ?>
                         </div>
+
+                        <?php if (! empty($fallbackRemaining)): ?>
+                            <!-- Sisa Foto Fallback yang Terbuka ke Bawah -->
+                            <div class="collapse" id="moreGalleriesCollapse">
+                                <div class="row g-6 mt-1">
+                                    <?php foreach ($fallbackRemaining as $item): ?>
+                                        <?php $renderFallbackCard($item); ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-12">
+                                <button type="button" class="btn btn-primary px-8 py-3" id="btnToggleMoreGalleries" data-bs-toggle="collapse" data-bs-target="#moreGalleriesCollapse" aria-expanded="false" aria-controls="moreGalleriesCollapse">
+                                    <span class="btn-text">Lihat Galeri Lainnya</span>
+                                    <i class="ki-duotone ki-down fs-4 ms-2"><span class="path1"></span><span class="path2"></span></i>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                     <?php else: ?>
                         <p class="text-center text-muted mb-0">Belum ada galeri yang dipublikasikan.</p>
                     <?php endif; ?>
@@ -111,3 +147,22 @@ $galleryFallback = [
         </div>
     </div>
 </div>
+<!--end::Gallery Section-->
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const btnToggleGalleries = document.getElementById('btnToggleMoreGalleries');
+    const collapseGalleriesEl = document.getElementById('moreGalleriesCollapse');
+    if (btnToggleGalleries && collapseGalleriesEl) {
+        collapseGalleriesEl.addEventListener('show.bs.collapse', function () {
+            btnToggleGalleries.innerHTML = '<span class="btn-text">Sembunyikan Galeri</span><i class="ki-duotone ki-up fs-4 ms-2"><span class="path1"></span><span class="path2"></span></i>';
+            if (typeof refreshFsLightbox === 'function') {
+                refreshFsLightbox();
+            }
+        });
+        collapseGalleriesEl.addEventListener('hide.bs.collapse', function () {
+            btnToggleGalleries.innerHTML = '<span class="btn-text">Lihat Galeri Lainnya</span><i class="ki-duotone ki-down fs-4 ms-2"><span class="path1"></span><span class="path2"></span></i>';
+        });
+    }
+});
+</script>
