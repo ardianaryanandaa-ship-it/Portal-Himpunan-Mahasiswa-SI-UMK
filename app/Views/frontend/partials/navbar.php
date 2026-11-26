@@ -21,7 +21,7 @@
 											<img src="<?= base_url('gambar/images-removebg-preview.png') ?>" alt="Logo HIMA SI" />
 										</span>
 										<span class="hima-brand-copy">
-											<strong>HIMA SI</strong>
+											<strong>Himpunan Mahasiswa SI</strong>
 											<small>Universitas Muria Kudus</small>
 										</span>
 									</a>
