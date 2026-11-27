@@ -12,7 +12,6 @@ if ($isLanding) {
 		'frontend-struktur.css',
 		'frontend-program.css',
 		'frontend-agenda.css',
-		'frontend-prestasi.css',
 		'frontend-galeri.css',
 		'frontend-berita.css',
 		'frontend-aspirasi.css',

@@ -60,11 +60,6 @@
 											<!--end::Menu item-->
 											<!--begin::Menu item-->
 											<div class="menu-item">
-												<a class="menu-link nav-link py-3 px-2" href="#achievements" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Prestasi</a>
-											</div>
-											<!--end::Menu item-->
-											<!--begin::Menu item-->
-											<div class="menu-item">
 												<a class="menu-link nav-link py-3 px-2" href="#events" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Kegiatan</a>
 											</div>
 											<!--end::Menu item-->

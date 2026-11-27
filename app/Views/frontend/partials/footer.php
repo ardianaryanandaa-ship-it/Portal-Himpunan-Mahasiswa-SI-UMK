@@ -55,7 +55,6 @@
 							<a href="#vision-mission" class="text-white opacity-50 text-hover-primary fs-6 mb-4" data-kt-scroll-toggle="true">Visi &amp; Misi</a>
 							<a href="#team" class="text-white opacity-50 text-hover-primary fs-6 mb-4" data-kt-scroll-toggle="true">Struktur Pengurus</a>
 							<a href="#programs" class="text-white opacity-50 text-hover-primary fs-6 mb-4" data-kt-scroll-toggle="true">Program Kerja</a>
-							<a href="#achievements" class="text-white opacity-50 text-hover-primary fs-6 mb-4" data-kt-scroll-toggle="true">Prestasi</a>
 						</div>
 						<!--end::Links Menu-->
 

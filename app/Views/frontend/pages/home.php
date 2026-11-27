@@ -6,7 +6,6 @@
     <?= $this->include('frontend/sections/organisasi') ?>
     <?= $this->include('frontend/sections/program') ?>
     <?= $this->include('frontend/sections/kegiatan') ?>
-    <?= $this->include('frontend/sections/prestasi') ?>
     <?= $this->include('frontend/sections/galeri') ?>
     <?= $this->include('frontend/sections/berita') ?>
     <?= $this->include('frontend/sections/aspirasi') ?>
