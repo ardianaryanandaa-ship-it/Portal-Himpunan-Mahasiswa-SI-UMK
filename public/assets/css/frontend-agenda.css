@@ -30,3 +30,27 @@
   transform: rotate(45deg);
   pointer-events: none;
 }
+
+#events .bg-primary {
+  background: var(--hima-blue-600) !important;
+}
+
+#events .text-primary,
+#events .text-hover-primary:hover,
+#events .btn-light-primary,
+#events .badge-light-primary {
+  color: var(--hima-blue-700) !important;
+}
+
+#events .btn-light-primary {
+  background: var(--hima-blue-50) !important;
+  border-color: var(--hima-blue-50) !important;
+}
+
+#events .btn-light-primary:hover,
+#events .btn-light-primary:active,
+#events .btn-light-primary:focus {
+  color: #fff !important;
+  background: var(--hima-blue-700) !important;
+  border-color: var(--hima-blue-700) !important;
+}

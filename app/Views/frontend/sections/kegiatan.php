@@ -56,7 +56,7 @@ $remainingEvents = ! empty($events) && count($events) > 3 ? array_slice($events,
                                             <span class="fs-7 opacity-75">Tahun <?= esc(date('Y', $startTime)) ?></span>
                                         </div>
                                     </div>
-                                    <span class="badge badge-light-<?= $isUpcoming ? 'success' : 'secondary' ?> fs-7 fw-bold">
+                                    <span class="badge badge-light-<?= $isUpcoming ? 'primary' : 'secondary' ?> fs-7 fw-bold">
                                         <?= $isUpcoming ? 'Mendatang' : 'Selesai' ?>
                                     </span>
                                 </div>
@@ -105,7 +105,7 @@ $remainingEvents = ! empty($events) && count($events) > 3 ? array_slice($events,
                                                     <span class="fs-7 opacity-75">Tahun <?= esc(date('Y', $startTime)) ?></span>
                                                 </div>
                                             </div>
-                                            <span class="badge badge-light-<?= $isUpcoming ? 'success' : 'secondary' ?> fs-7 fw-bold">
+                                            <span class="badge badge-light-<?= $isUpcoming ? 'primary' : 'secondary' ?> fs-7 fw-bold">
                                                 <?= $isUpcoming ? 'Mendatang' : 'Selesai' ?>
                                             </span>
                                         </div>
@@ -145,8 +145,8 @@ $remainingEvents = ! empty($events) && count($events) > 3 ? array_slice($events,
         <?php elseif (! $hasEventRecords): ?>
             <?php if ($fallbackEvents !== []): ?>
                 <?php
-                $eventColors = ['primary', 'success', 'dark'];
-                $eventBadgeColors = ['success', 'warning', 'info'];
+                $eventColors = ['primary', 'primary', 'primary'];
+                $eventBadgeColors = ['primary', 'primary', 'primary'];
                 ?>
                 <div class="row g-8">
                     <?php foreach ($fallbackEvents as $index => [$date, $year, $status, $category, $title, $description, $location]): ?>
